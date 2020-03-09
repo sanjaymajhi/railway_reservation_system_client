@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import { gettopost, logout } from "../scripts/user_auth";
 
 import { Link } from "react-router-dom";
 
 import railway from "../images/railways.png";
 import irctc from "../images/irctc_icon.jpeg";
 class Navbar extends Component {
+  logout = e => {
+    this.props.handleToken(null);
+    localStorage.removeItem("token");
+  };
   render() {
     return (
       <div className="navbar">
         <Link className="nav-left" to="/">
           <img className="icon" src={railway} alt="indian railways" />
         </Link>
-        {!localStorage.getItem("token") ? (
+        {!this.props.token ? (
           <ul id="navdiv1">
             <Link to="/contact">
               <li>Contact Us</li>
@@ -31,13 +34,15 @@ class Navbar extends Component {
         ) : (
           <ul id="navdiv2">
             <li>
-              <a href={gettopost(this, "/user/profile")}>profile</a>
+              <a href="">profile</a>
             </li>
             <li>
               <a href="/contact">Contact Us</a>
             </li>
             <li>
-              <a href={logout(this)}>Log Out</a>
+              <a href="/" onClick={this.logout}>
+                Log Out
+              </a>
             </li>
             <li>
               <img className="icon" src={irctc} alt="IRCTC icon" />
