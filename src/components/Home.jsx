@@ -50,7 +50,7 @@ class Home extends Component {
             <h2>Safety Security Punctuality</h2>
           </div>
         </div>
-        <div class="ad">
+        <div className="ad">
           <h1>Call for advertisement</h1>
         </div>
         <div id="services-container">
@@ -68,7 +68,7 @@ class Home extends Component {
             <h3>gallery</h3>
           </div>
         </div>
-        <div class="ad">
+        <div className="ad">
           <h1>Call for advertisement</h1>
         </div>
         <div id="holidays-container">

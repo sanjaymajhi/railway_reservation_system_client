@@ -26,7 +26,6 @@ class Login extends Component {
       password: this.state.password,
       "g-recaptcha-response": e.target[2].value
     };
-    console.log(payload);
 
     fetch(url, {
       method: "POST",
@@ -53,36 +52,38 @@ class Login extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
-      <form id="login_form" onSubmit={this.login_form_submit}>
-        <label htmlFor="email">Email ID : </label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          value={this.state.email}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password : </label>
-        <input
-          id="password"
-          name="password"
-          type="text"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <div />
+      <React.Fragment>
+        <h1>Login Page</h1>
+        <form id="login_form" onSubmit={this.login_form_submit}>
+          <label htmlFor="email">Email ID : </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="password">Password : </label>
+          <input
+            id="password"
+            name="password"
+            type="text"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+          <div />
 
-        <div
-          className="g-recaptcha"
-          data-sitekey="6LdMetIUAAAAALN5cER-Dg7G1dF64-CFHG1F73zW"
-        />
-        <div />
-        <div>
-          <input type="submit" value="Login" />
-        </div>
-      </form>
+          <div
+            className="g-recaptcha"
+            data-sitekey="6LdMetIUAAAAALN5cER-Dg7G1dF64-CFHG1F73zW"
+          />
+          <div />
+          <div>
+            <input type="submit" value="Login" />
+          </div>
+        </form>
+      </React.Fragment>
     );
   }
 }
