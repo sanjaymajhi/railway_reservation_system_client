@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/user/Login";
-import Register from "./components/user/Register";
-import Profile from "./components/user/Profile";
+import Profile from "./components/user/Profile_register";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./index.css";
@@ -31,7 +30,7 @@ class App extends Component {
                 <Login {...props} handleToken={this.tokenhandler} />
               )}
             />
-            <Route path="/user/register" component={Register} />
+            <Route path="/user/register" component={Profile} />
             <Route path="/user/profile" component={Profile} />
             <Route path="/user/logout" component={Home} />
 
