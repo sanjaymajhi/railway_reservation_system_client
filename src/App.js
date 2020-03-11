@@ -3,6 +3,10 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/user/Login";
 import Profile from "./components/user/Profile_register";
+import Contact from "./components/contact";
+import Train from "./components/train/train";
+import Station from "./components/station/station";
+import T_Route from "./components/route/route";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./index.css";
@@ -36,7 +40,7 @@ class App extends Component {
 
             {/* train routes */}
 
-            <Route path="/train/create" />
+            <Route path="/train/create" component={Train} />
             <Route path="/trains" />
             <Route path="/train/:id" exact />
             <Route path="/train/:id/update" />
@@ -45,7 +49,7 @@ class App extends Component {
 
             {/* train_route routes */}
 
-            <Route path="/route/create" />
+            <Route path="/route/create" component={T_Route} />
             <Route path="/route/:id" exact />
             <Route path="/route/:id/update" />
             <Route path="/route/:id/delete" />
@@ -53,7 +57,7 @@ class App extends Component {
 
             {/* station routes */}
 
-            <Route path="/station/create" />
+            <Route path="/station/create" component={Station} />
             <Route path="/stations" />
             <Route path="/station/:id" exact />
             <Route path="/station/:id/update" />
@@ -67,7 +71,7 @@ class App extends Component {
             {/* other routes */}
 
             <Route path="/about" />
-            <Route path="/contact" />
+            <Route path="/contact" component={Contact} />
           </Switch>
         </div>
       </Router>
