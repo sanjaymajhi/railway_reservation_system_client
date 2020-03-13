@@ -2,8 +2,10 @@ body {
   margin: 0;
 }
 
-main {
+.main {
   display: grid;
+  position: absolute;
+  top: 60px;
   grid-template-columns: auto;
   text-align: center;
   background-color: #ffffff;
@@ -120,6 +122,9 @@ a {
   align-items: center;
   height: 60px;
   box-shadow: 2px 4px 3px black;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 .icon {
@@ -216,4 +221,27 @@ li {
   margin: 10px;
   padding: 5px;
   width: 100%;
+}
+
+.admin {
+  position: absolute;
+  top: 60px;
+  display: flex;
+  width: 100%;
+}
+.a_nav {
+  width: 20%;
+  border: 1px solid black;
+  height: 90vh;
+  position: fixed;
+  overflow: auto;
+}
+
+.a_nav ul li {
+  text-align: left;
+}
+
+.a_main {
+  margin-left: 20%;
+  width: 80%;
 }

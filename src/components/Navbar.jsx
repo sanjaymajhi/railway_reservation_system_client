@@ -33,12 +33,13 @@ class Navbar extends Component {
           </ul>
         ) : (
           <ul id="navdiv2">
-            <li>
-              <a href="">profile</a>
-            </li>
-            <li>
-              <a href="/contact">Contact Us</a>
-            </li>
+            <li>{}</li>
+            <Link to="/user/profile">
+              <li>profile</li>
+            </Link>
+            <Link to="/contact">
+              <li>Contact Us</li>
+            </Link>
             <li>
               <a href="/" onClick={this.logout}>
                 Log Out

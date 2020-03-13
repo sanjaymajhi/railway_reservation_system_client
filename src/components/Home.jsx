@@ -10,7 +10,7 @@ import thailand from "../images/Thailand.jpg";
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="main">
         <div id="search-container">
           <div id="search">
             <form action="/search" method="post">

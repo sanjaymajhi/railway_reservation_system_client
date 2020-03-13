@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import A_nav from "../admin/admin_nav";
+
 class Station extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,8 @@ class Station extends Component {
 
   submit = e => {
     e.preventDefault();
-    const payload = { ...this.state };
+    const token = localStorage.getItem("token");
+    const payload = { ...this.state, token };
     const url = "/booking/station/create/";
     fetch(url, {
       method: "POST",
@@ -38,6 +41,10 @@ class Station extends Component {
         } else {
           let h1 = document.getElementById("error");
           h1.style.visibility = "visible";
+          if (!(status.error instanceof Array)) {
+            status.error = new Array(status.error);
+          }
+          console.log(status.error);
           status.error.map(error => (h1.innerHTML += error.msg + "\n"));
           setTimeout(() => {
             h1.style.visibility = "hidden";
@@ -49,33 +56,36 @@ class Station extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h1>Station Page</h1>
-        <form id="form" onSubmit={this.submit}>
-          <label htmlFor="name">Name : </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="code">Station Code : </label>
-          <input
-            type="text"
-            name="code"
-            id="code"
-            onChange={this.handleChange}
-          />
-          <div />
-          <input type="submit" value="Save" />
-        </form>
-        <h1 id="stat_add" style={{ visibility: "hidden" }}>
-          Station added to database...
-        </h1>
-        <h1 id="error" style={{ visibility: "hidden" }}>
-          Error :{" "}
-        </h1>
-      </React.Fragment>
+      <div className="admin">
+        <A_nav />
+        <div className="a_main">
+          <h1>Station Page</h1>
+          <form id="form" onSubmit={this.submit}>
+            <label htmlFor="name">Name : </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="code">Station Code : </label>
+            <input
+              type="text"
+              name="code"
+              id="code"
+              onChange={this.handleChange}
+            />
+            <div />
+            <input type="submit" value="Save" />
+          </form>
+          <h1 id="stat_add" style={{ visibility: "hidden" }}>
+            Station added to database...
+          </h1>
+          <h1 id="error" style={{ visibility: "hidden" }}>
+            Error :{" "}
+          </h1>
+        </div>
+      </div>
     );
   }
 }

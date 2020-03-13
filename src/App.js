@@ -40,28 +40,28 @@ class App extends Component {
 
             {/* train routes */}
 
-            <Route path="/train/create" component={Train} />
-            <Route path="/trains" />
-            <Route path="/train/:id" exact />
-            <Route path="/train/:id/update" />
-            <Route path="/train/:id/delete" />
-            <Route path="/train/:id/book" />
+            <Route path="/admin/train/create" component={Train} />
+            <Route path="/admin/trains" />
+            <Route path="/admin/train/:id" exact />
+            <Route path="/admin/train/:id/update" />
+            <Route path="/admin/train/:id/delete" />
+            <Route path="/admin/train/:id/book" />
 
             {/* train_route routes */}
 
-            <Route path="/route/create" component={T_Route} />
-            <Route path="/route/:id" exact />
-            <Route path="/route/:id/update" />
-            <Route path="/route/:id/delete" />
-            <Route path="/routes" />
+            <Route path="/admin/route/create" component={T_Route} />
+            <Route path="/admin/route/:id" exact />
+            <Route path="/admin/route/:id/update" />
+            <Route path="/admin/route/:id/delete" />
+            <Route path="/admin/routes" />
 
             {/* station routes */}
 
-            <Route path="/station/create" component={Station} />
-            <Route path="/stations" />
-            <Route path="/station/:id" exact />
-            <Route path="/station/:id/update" />
-            <Route path="/station/:id/delete" />
+            <Route path="/admin/station/create" component={Station} />
+            <Route path="/admin/stations" />
+            <Route path="/admin/station/:id" exact />
+            <Route path="/admin/station/:id/update" />
+            <Route path="/admin/station/:id/delete" />
 
             {/* ticket routes */}
 

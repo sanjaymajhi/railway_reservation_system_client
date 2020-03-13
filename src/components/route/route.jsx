@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import A_nav from "../admin/admin_nav";
 class T_Route extends Component {
   constructor(props) {
     super(props);
@@ -110,32 +112,35 @@ class T_Route extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Route Create : </h1>
-        <form id="form" onSubmit={this.submit}>
-          <label htmlFor="route_code">Route Code : </label>
-          <input
-            type="text"
-            name="route_code"
-            id="route_code"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="distance">Distance : </label>
-          <input
-            type="number"
-            name="distance"
-            id="distance"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="count">No. of stations : </label>
-          <input type="number" name="count" onChange={this.countHandler} />
+      <div className="admin">
+        <A_nav />
+        <div className="a_main">
+          <h1>Route Create : </h1>
+          <form id="form" onSubmit={this.submit}>
+            <label htmlFor="route_code">Route Code : </label>
+            <input
+              type="text"
+              name="route_code"
+              id="route_code"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="distance">Distance : </label>
+            <input
+              type="number"
+              name="distance"
+              id="distance"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="count">No. of stations : </label>
+            <input type="number" name="count" onChange={this.countHandler} />
 
-          <div id="select_div"></div>
-          <input type="submit" value="Save" />
-        </form>
-        <h1 id="route_saved" style={{ visibility: "hidden" }}>
-          Route saved to database...
-        </h1>
+            <div id="select_div"></div>
+            <input type="submit" value="Save" />
+          </form>
+          <h1 id="route_saved" style={{ visibility: "hidden" }}>
+            Route saved to database...
+          </h1>
+        </div>
       </div>
     );
   }

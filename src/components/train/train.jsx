@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import A_nav from "../admin/admin_nav";
 class Train extends Component {
   constructor(props) {
     super(props);
@@ -87,193 +88,200 @@ class Train extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Add Trains Page </h1>
-        <form id="form" onSubmit={this.submit}>
-          <label htmlFor="name">Name : </label>
-          <input
-            type="text"
-            name="name"
-            id="train_name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="train_no">Train No : </label>
-          <input
-            type="number"
-            name="train_no"
-            id="train_no"
-            value={this.state.train_no}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="available_tiers">Available Tiers : </label>
-          <div>
+      <div className="admin">
+        <A_nav />
+        <div className="a_main">
+          <h1>Add Trains Page </h1>
+          <form id="form" onSubmit={this.submit}>
+            <label htmlFor="name">Name : </label>
             <input
-              type="checkbox"
-              name="available_tiers"
-              id="available_tiers"
-              value="1A"
+              type="text"
+              name="name"
+              id="train_name"
+              value={this.state.name}
               onChange={this.handleChange}
             />
-            1A
+            <label htmlFor="train_no">Train No : </label>
             <input
-              type="checkbox"
-              name="available_tiers"
-              id="available_tiers"
-              value="2A"
+              type="number"
+              name="train_no"
+              id="train_no"
+              value={this.state.train_no}
               onChange={this.handleChange}
             />
-            2A
+            <label htmlFor="available_tiers">Available Tiers : </label>
+            <div>
+              <input
+                type="checkbox"
+                name="available_tiers"
+                id="available_tiers"
+                value="1A"
+                onChange={this.handleChange}
+              />
+              1A
+              <input
+                type="checkbox"
+                name="available_tiers"
+                id="available_tiers"
+                value="2A"
+                onChange={this.handleChange}
+              />
+              2A
+              <input
+                type="checkbox"
+                name="available_tiers"
+                id="available_tiers"
+                value="3A"
+                onChange={this.handleChange}
+              />
+              3A
+              <input
+                type="checkbox"
+                name="available_tiers"
+                id="available_tiers"
+                value="SL"
+                onChange={this.handleChange}
+              />
+              SL
+              <input
+                type="checkbox"
+                name="available_tiers"
+                id="available_tiers"
+                value="CC"
+                onChange={this.handleChange}
+              />
+              CC
+            </div>
+            <label htmlFor="departing_days">Select departing days : </label>
+            <div>
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="mon"
+                onChange={this.handleChange}
+              />
+              Monday
+              <br />
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="tue"
+                onChange={this.handleChange}
+              />
+              Tuesday
+              <br />
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="wed"
+                onChange={this.handleChange}
+              />
+              Wednesday
+              <br />
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="thu"
+                onChange={this.handleChange}
+              />
+              Thursday
+              <br />
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="fri"
+                onChange={this.handleChange}
+              />
+              Friday
+              <br />
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="sat"
+                onChange={this.handleChange}
+              />
+              Saturday
+              <br />
+              <input
+                type="checkbox"
+                name="departing_days"
+                id="departing_days"
+                value="sun"
+                onChange={this.handleChange}
+              />
+              Sunday
+              <br />
+            </div>
+            <label htmlFor="route">Select Route</label>
+            <select
+              name="route"
+              id="route"
+              onChange={this.handleChange}
+            ></select>
+            <label htmlFor="depart_time">departure time : </label>
             <input
-              type="checkbox"
-              name="available_tiers"
-              id="available_tiers"
-              value="3A"
+              type="time"
+              name="depart_time"
+              id="depart_time"
+              value={this.state.depart_time}
               onChange={this.handleChange}
             />
-            3A
+            <label htmlFor="arrival_time">arrival time : </label>
             <input
-              type="checkbox"
-              name="available_tiers"
-              id="available_tiers"
-              value="SL"
+              type="time"
+              name="arrival_time"
+              id="arrival_time"
+              value={this.state.arrival_time}
               onChange={this.handleChange}
             />
-            SL
+            <label htmlFor="coach_seats">coach seats : </label>
             <input
-              type="checkbox"
-              name="available_tiers"
-              id="available_tiers"
-              value="CC"
+              type="number"
+              name="coach_seats"
+              id="coach_seats"
+              value={this.state.coach_seats}
               onChange={this.handleChange}
             />
-            CC
-          </div>
-          <label htmlFor="departing_days">Select departing days : </label>
-          <div>
+            <label htmlFor="total_coaches">Total Coaches : </label>
             <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="mon"
+              type="number"
+              name="total_coaches"
+              id="total_coaches"
+              value={this.state.total_coaches}
               onChange={this.handleChange}
             />
-            Monday
-            <br />
+            <label htmlFor="total_seats">total_seats : </label>
             <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="tue"
+              type="number"
+              name="total_seats"
+              id="total_seats"
+              value={this.state.total_seats}
               onChange={this.handleChange}
             />
-            Tuesday
-            <br />
+            <label htmlFor="ticket_cost">Ticket Cost : </label>
             <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="wed"
+              type="number"
+              name="ticket_cost"
+              id="ticket_cost"
+              value={this.state.ticket_cost}
               onChange={this.handleChange}
             />
-            Wednesday
-            <br />
-            <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="thu"
-              onChange={this.handleChange}
-            />
-            Thursday
-            <br />
-            <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="fri"
-              onChange={this.handleChange}
-            />
-            Friday
-            <br />
-            <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="sat"
-              onChange={this.handleChange}
-            />
-            Saturday
-            <br />
-            <input
-              type="checkbox"
-              name="departing_days"
-              id="departing_days"
-              value="sun"
-              onChange={this.handleChange}
-            />
-            Sunday
-            <br />
-          </div>
-          <label htmlFor="route">Select Route</label>
-          <select name="route" id="route" onChange={this.handleChange}></select>
-          <label htmlFor="depart_time">departure time : </label>
-          <input
-            type="time"
-            name="depart_time"
-            id="depart_time"
-            value={this.state.depart_time}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="arrival_time">arrival time : </label>
-          <input
-            type="time"
-            name="arrival_time"
-            id="arrival_time"
-            value={this.state.arrival_time}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="coach_seats">coach seats : </label>
-          <input
-            type="number"
-            name="coach_seats"
-            id="coach_seats"
-            value={this.state.coach_seats}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="total_coaches">Total Coaches : </label>
-          <input
-            type="number"
-            name="total_coaches"
-            id="total_coaches"
-            value={this.state.total_coaches}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="total_seats">total_seats : </label>
-          <input
-            type="number"
-            name="total_seats"
-            id="total_seats"
-            value={this.state.total_seats}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="ticket_cost">Ticket Cost : </label>
-          <input
-            type="number"
-            name="ticket_cost"
-            id="ticket_cost"
-            value={this.state.ticket_cost}
-            onChange={this.handleChange}
-          />
-          <div />
-          <input type="submit" value="Save" />
-        </form>
-        <h2 id="train_saved" style={{ visibility: "hidden" }}>
-          Train saved to database...
-        </h2>
-        <h2 id="save_error" style={{ visibility: "hidden" }}>
-          Errors :{" "}
-        </h2>
+            <div />
+            <input type="submit" value="Save" />
+          </form>
+          <h2 id="train_saved" style={{ visibility: "hidden" }}>
+            Train saved to database...
+          </h2>
+          <h2 id="save_error" style={{ visibility: "hidden" }}>
+            Errors :{" "}
+          </h2>
+        </div>
       </div>
     );
   }
