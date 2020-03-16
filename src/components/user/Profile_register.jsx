@@ -18,6 +18,7 @@ class Profile extends Component {
       password: ""
     };
     this.getProfile();
+    console.log(this.props);
   }
 
   handleChange = e => {
@@ -110,12 +111,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h1>
-          {localStorage.getItem("token")
-            ? "Profile Page"
-            : "Registeration Page"}
-        </h1>
+      <div className={this.props.admin ? "admin" : "main"}>
         <form
           id="register_form"
           onSubmit={
@@ -123,6 +119,12 @@ class Profile extends Component {
           }
           method="post"
         >
+          <h1>
+            {localStorage.getItem("token")
+              ? "Profile Page"
+              : "Registeration Page"}
+          </h1>
+          <div />
           <label htmlFor="f_name">First Name : </label>
           <input
             id="f_name"
@@ -227,7 +229,7 @@ class Profile extends Component {
         <h2 id="update_visible" style={{ visibility: "hidden" }}>
           Profile Updated...
         </h2>
-      </React.Fragment>
+      </div>
     );
   }
 }

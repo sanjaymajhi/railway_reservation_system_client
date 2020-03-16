@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import A_nav from "../admin/admin_nav";
 class T_Route extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +31,7 @@ class T_Route extends Component {
           select.name = select.id = "station" + i.toString();
           select.onchange = this.handleChange;
 
-          //adding select selection as disabled and selected option
+          //adding select station as disabled and selected option
           const option = document.createElement("option");
           option.innerHTML = "Select Station";
           option.disabled = true;
@@ -61,12 +60,14 @@ class T_Route extends Component {
     });
     const select = document.getElementById("select_div");
     select.innerHTML = "";
+    const token = localStorage.getItem("token");
     const payload = {
       src_stn: this.state.src_stn,
       des_stn: this.state.des_stn,
       stations: this.state.stations,
       distance: this.state.distance,
-      route_code: this.state.route_code
+      route_code: this.state.route_code,
+      token: token
     };
     console.log(payload);
     fetch("/booking/route/create", {
@@ -92,6 +93,17 @@ class T_Route extends Component {
             distance: 0,
             route_code: ""
           });
+        } else {
+          let h1 = document.getElementById("error");
+          h1.style.visibility = "visible";
+          if (!(data.error instanceof Array)) {
+            data.error = new Array(data.error);
+          }
+          data.error.map(error => (h1.innerHTML += error.msg + "\n"));
+          setTimeout(() => {
+            h1.style.visibility = "hidden";
+            h1.innerHTML = "Errors : ";
+          }, 5000);
         }
       });
   };
@@ -113,7 +125,6 @@ class T_Route extends Component {
   render() {
     return (
       <div className="admin">
-        <A_nav />
         <div className="a_main">
           <h1>Route Create : </h1>
           <form id="form" onSubmit={this.submit}>
@@ -139,6 +150,9 @@ class T_Route extends Component {
           </form>
           <h1 id="route_saved" style={{ visibility: "hidden" }}>
             Route saved to database...
+          </h1>
+          <h1 id="error" style={{ visibility: "hidden" }}>
+            Errors :{" "}
           </h1>
         </div>
       </div>

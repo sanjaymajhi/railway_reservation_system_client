@@ -9,6 +9,7 @@ body {
   grid-template-columns: auto;
   text-align: center;
   background-color: #ffffff;
+  width: 100%;
 }
 
 .ad {
@@ -34,6 +35,8 @@ input[type="submit"] {
   background-color: #2e3192;
   color: white;
   font-weight: bold;
+  padding: 10px;
+  width: 100%;
 }
 
 #search {
@@ -137,7 +140,7 @@ a {
 }
 
 .nav-left {
-  width: 30%;
+  width: 10%;
 }
 
 #navdiv1,
@@ -200,9 +203,10 @@ li {
 }
 
 .contact {
+  position: absolute;
+  top: 60px;
+  left: 20%;
   width: 60%;
-  margin: auto;
-  margin-top: 10px;
   box-shadow: 5px 10px 8px black;
   padding: 20px;
 }
@@ -227,12 +231,14 @@ li {
   position: absolute;
   top: 60px;
   display: flex;
-  width: 100%;
+  left: 20%;
+  width: 80%;
 }
 .a_nav {
   width: 20%;
   border: 1px solid black;
   height: 90vh;
+  top: 60px;
   position: fixed;
   overflow: auto;
 }
@@ -244,4 +250,102 @@ li {
 .a_main {
   margin-left: 20%;
   width: 80%;
+}
+
+#train-search-page {
+  display: flex;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+}
+
+#train-side-nav {
+  width: 20%;
+  position: fixed;
+  height: 90vh;
+  border: 1px solid black;
+}
+
+#side_form select,
+#side_form input {
+  width: 60%;
+}
+
+#side_form label {
+  color: #303471;
+  font-family: sans-serif;
+  font-weight: 700;
+}
+
+#train-main {
+  width: 80%;
+  position: absolute;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+#train-header {
+  width: 100%;
+}
+
+#t_nav {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+  align-items: center;
+  background-color: #cdcfd2;
+  margin: 10px 0;
+}
+
+#t_nav_links {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#train_list_header {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  margin: 0;
+  border: 2px solid #dcdcdc;
+}
+
+#train_list_header_sec2 {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+}
+
+.train-search-results {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  margin: 10px;
+  border: 1px solid grey;
+  box-shadow: 10px 10px 5px grey;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+#train-name div {
+  text-align: left;
+  padding: 10px;
+}
+
+#train-timing {
+  display: grid;
+  grid-template-columns: repeat(3, 33.33%);
+}
+
+#select-teir {
+  justify-self: center;
+  align-self: center;
+  width: 70%;
+  height: 40%;
+}
+
+#availability {
+  justify-self: center;
+  align-self: center;
+  width: 70%;
+  height: 40%;
 }

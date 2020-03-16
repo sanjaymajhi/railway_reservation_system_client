@@ -8,37 +8,107 @@ import manali from "../images/Manali.jpg";
 import thailand from "../images/Thailand.jpg";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      from_stn: "",
+      to_stn: "",
+      date: "",
+      class: ""
+    };
+
+    this.loadStations();
+  }
+
+  loadStations = () => {
+    fetch("/booking/stations/", {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(data => {
+        const select1 = document.getElementById("from_stn");
+        const select2 = document.getElementById("to_stn");
+        for (let i = 0; i < data.list.length; i++) {
+          const option1 = document.createElement("option");
+          option1.value = data.list[i]._id;
+          option1.innerHTML = data.list[i].name + " - " + data.list[i].code;
+          select1.appendChild(option1);
+          const option2 = document.createElement("option");
+          option2.value = data.list[i]._id;
+          option2.innerHTML = data.list[i].name + " - " + data.list[i].code;
+          select2.appendChild(option2);
+        }
+      });
+  };
+
+  handleChange = e => {
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({ [name]: value });
+  };
+
+  submit = e => {
+    e.preventDefault();
+    const url = "/booking/trains/";
+    const payload = { ...this.state };
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.props.history.push({
+          pathname: "/search/",
+          search: "",
+          state: { ...data, date: this.state.date }
+        });
+      });
+  };
   render() {
     return (
       <div className="main">
         <div id="search-container">
           <div id="search">
-            <form action="/search" method="post">
+            <form onSubmit={this.submit}>
               <p id="bold">Book your ticket</p>
               <img src="images/rail_icon.png" alt="rail icon" />
               <br />
               <br />
-              <select name="">
+              <select
+                name="from_stn"
+                id="from_stn"
+                onChange={this.handleChange}
+              >
                 <option value="" selected="selected" disabled="disabled">
                   From *
                 </option>
               </select>
               <br />
               <br />
-              <select name="">
+              <select name="to_stn" id="to_stn" onChange={this.handleChange}>
                 <option value="" disabled="disabled" selected="selected">
                   To *
                 </option>
               </select>
               <br />
               <br />
-              <input type="date" name="" />
+              <input type="date" name="date" onChange={this.handleChange} />
               <br />
               <br />
-              <select name="">
+              <select name="class" onChange={this.handleChange}>
                 <option value="" disabled="disabled" selected="selected">
                   Classes *
                 </option>
+                <option value="all">All Classses</option>
+                <option value="1A">1A</option>
+                <option value="2A">2A</option>
+                <option value="3A">3A</option>
+                <option value="SL">SL</option>
+                <option value="CC">CC</option>
               </select>
               <br />
               <br />

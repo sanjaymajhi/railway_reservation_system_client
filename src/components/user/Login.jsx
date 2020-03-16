@@ -35,10 +35,26 @@ class Login extends Component {
       }
     })
       .then(res => res.json())
-      .then(token => {
-        localStorage.setItem("token", token);
-        this.props.handleToken(token);
-        this.props.history.push("/user/profile");
+      .then(data => {
+        if (data.saved === "success") {
+          localStorage.setItem("token", data.token);
+          this.props.handleToken(data.token);
+          if (data.admin) {
+            this.props.history.push("/admin/");
+          } else {
+            this.props.history.push("/user/profile");
+          }
+        } else {
+          const h2 = document.getElementById("error");
+          h2.style.visibility = "visible";
+          if (!(data.error instanceof Array)) {
+            data.error = new Array(data.error);
+          }
+          data.error.map(error => (h2.innerHTML += error.msg + "\n"));
+          setTimeout(function() {
+            h2.style.visibility = "hidden";
+          }, 5000);
+        }
       });
   };
 
@@ -53,7 +69,7 @@ class Login extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="main">
         <h1>Login Page</h1>
         <form id="login_form" onSubmit={this.login_form_submit}>
           <label htmlFor="email">Email ID : </label>
@@ -83,7 +99,10 @@ class Login extends Component {
             <input type="submit" value="Login" />
           </div>
         </form>
-      </React.Fragment>
+        <h2 id="error" style={{ visibility: "hidden" }}>
+          Errors :{" "}
+        </h2>
+      </div>
     );
   }
 }

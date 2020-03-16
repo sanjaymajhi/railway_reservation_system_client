@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-class A_nav extends Component {
+class Anav extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   navUnhide = id => {
     if (document.getElementById(id).style.display === "block") {
       document.getElementById(id).style.display = "none";
@@ -9,6 +13,7 @@ class A_nav extends Component {
     }
   };
   render() {
+    console.log("inside admin nav");
     return (
       <div className="a_nav">
         <ul>
@@ -70,4 +75,4 @@ class A_nav extends Component {
   }
 }
 
-export default A_nav;
+export default Anav;

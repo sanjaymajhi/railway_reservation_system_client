@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import A_nav from "../admin/admin_nav";
 class Train extends Component {
   constructor(props) {
     super(props);
@@ -57,8 +56,10 @@ class Train extends Component {
     e.preventDefault();
     this.setState({ available_seats: this.state.total_seats });
     const url = "/booking/train/create/";
+    const token = localStorage.getItem("token");
     const payload = {
-      ...this.state
+      ...this.state,
+      token
     };
     fetch(url, {
       method: "POST",
@@ -78,6 +79,9 @@ class Train extends Component {
         } else {
           const h2 = document.getElementById("save_error");
           h2.style.visibility = "visible";
+          if (!(data.error instanceof Array)) {
+            data.error = new Array(data.error);
+          }
           data.error.map(error => (h2.innerHTML += error.msg + "\n"));
           setTimeout(function() {
             h2.style.visibility = "hidden";
@@ -89,7 +93,6 @@ class Train extends Component {
   render() {
     return (
       <div className="admin">
-        <A_nav />
         <div className="a_main">
           <h1>Add Trains Page </h1>
           <form id="form" onSubmit={this.submit}>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import A_nav from "../admin/admin_nav";
 
 class Station extends Component {
   constructor(props) {
@@ -23,6 +22,7 @@ class Station extends Component {
     const token = localStorage.getItem("token");
     const payload = { ...this.state, token };
     const url = "/booking/station/create/";
+    console.log(payload);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(payload),
@@ -31,8 +31,8 @@ class Station extends Component {
       }
     })
       .then(res => res.json())
-      .then(status => {
-        if (status.saved === "success") {
+      .then(data => {
+        if (data.saved === "success") {
           let h1 = document.getElementById("stat_add");
           h1.style.visibility = "visible";
           setTimeout(() => {
@@ -41,11 +41,10 @@ class Station extends Component {
         } else {
           let h1 = document.getElementById("error");
           h1.style.visibility = "visible";
-          if (!(status.error instanceof Array)) {
-            status.error = new Array(status.error);
+          if (!(data.error instanceof Array)) {
+            data.error = new Array(data.error);
           }
-          console.log(status.error);
-          status.error.map(error => (h1.innerHTML += error.msg + "\n"));
+          data.error.map(error => (h1.innerHTML += error.msg + "\n"));
           setTimeout(() => {
             h1.style.visibility = "hidden";
             h1.innerHTML = "Errors : ";
@@ -57,7 +56,6 @@ class Station extends Component {
   render() {
     return (
       <div className="admin">
-        <A_nav />
         <div className="a_main">
           <h1>Station Page</h1>
           <form id="form" onSubmit={this.submit}>
