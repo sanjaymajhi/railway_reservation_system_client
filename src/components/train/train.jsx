@@ -10,11 +10,10 @@ class Train extends Component {
       departing_days: [],
       route: "",
       depart_time: "00:00:00",
-      arrival_time: "00:00:00",
+      journey_time_mm: 0,
+      journey_time_hh: 0,
       coach_seats: 0,
-      total_seats: 0,
       ticket_cost: 0,
-      available_seats: 0,
       total_coaches: 0
     };
     this.loadRoutes();
@@ -24,12 +23,12 @@ class Train extends Component {
     const target = e.target;
     const name = target.name;
     const value = target.value;
-    if (name !== "available_tiers" && name !== "departing_days") {
-      this.setState({ [name]: value });
-    } else {
+    if (name === "available_tiers" || name === "departing_days") {
       const arr = this.state[name];
       arr.push(value);
       this.setState({ [name]: arr });
+    } else {
+      this.setState({ [name]: value });
     }
   };
 
@@ -54,7 +53,6 @@ class Train extends Component {
 
   submit = e => {
     e.preventDefault();
-    this.setState({ available_seats: this.state.total_seats });
     const url = "/booking/train/create/";
     const token = localStorage.getItem("token");
     const payload = {
@@ -235,12 +233,22 @@ class Train extends Component {
               value={this.state.depart_time}
               onChange={this.handleChange}
             />
-            <label htmlFor="arrival_time">arrival time : </label>
+            <div>Total journey time : </div>
             <input
-              type="time"
-              name="arrival_time"
-              id="arrival_time"
-              value={this.state.arrival_time}
+              type="number"
+              placeholder="Hours"
+              name="journey_time_hh"
+              id="journey_time_hh"
+              value={this.state.journey_time_hh}
+              onChange={this.handleChange}
+            />
+            <div />
+            <input
+              type="number"
+              placeholder="Minutes"
+              name="journey_time_mm"
+              id="journey_time_mm"
+              value={this.state.journey_time_mm}
               onChange={this.handleChange}
             />
             <label htmlFor="coach_seats">coach seats : </label>
@@ -259,14 +267,7 @@ class Train extends Component {
               value={this.state.total_coaches}
               onChange={this.handleChange}
             />
-            <label htmlFor="total_seats">total_seats : </label>
-            <input
-              type="number"
-              name="total_seats"
-              id="total_seats"
-              value={this.state.total_seats}
-              onChange={this.handleChange}
-            />
+
             <label htmlFor="ticket_cost">Ticket Cost : </label>
             <input
               type="number"

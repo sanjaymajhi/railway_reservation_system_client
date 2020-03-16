@@ -2,6 +2,12 @@ body {
   margin: 0;
 }
 
+* {
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
 .main {
   display: grid;
   position: absolute;
@@ -30,15 +36,6 @@ body {
   background-size: cover;
 }
 
-button,
-input[type="submit"] {
-  background-color: #2e3192;
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  width: 100%;
-}
-
 #search {
   width: 50%;
   border: 1px solid lightgray;
@@ -50,10 +47,22 @@ input[type="submit"] {
   height: 70vh;
 }
 
-#search form select,
+#search form select {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
 #search form input {
   width: 100%;
-  padding: 5px 10px;
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+
+#search form input[type="submit"] {
+  background-color: #2e3192;
+  color: white;
 }
 
 #rightofsearch {
@@ -89,12 +98,15 @@ input[type="submit"] {
   padding: 10px;
   margin: 20px;
   text-align: left;
-  background-color: #dcdcdc;
+  width: 90%;
+  height: 85vh;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px lightgray;
 }
 
 #holidays-container img {
   width: 100%;
-  height: 50%;
+  height: 60%;
 }
 #holidays-container #bottlead {
   height: 100%;
@@ -112,11 +124,6 @@ a {
   width: 100%;
   background-color: lightgray;
   padding: 30px;
-}
-
-* {
-  box-sizing: border-box;
-  text-align: center;
 }
 
 .navbar {
@@ -145,7 +152,7 @@ a {
 
 #navdiv1,
 #navdiv2 {
-  width: 70%;
+  width: 65%;
   display: flex;
   justify-content: flex-end;
 }
@@ -261,19 +268,27 @@ li {
 
 #train-side-nav {
   width: 20%;
-  position: fixed;
   height: 90vh;
-  border: 1px solid black;
+  position: fixed;
+  border-right: 1px solid lightgray;
 }
 
-#side_form select,
+#side_form select {
+  width: 70%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
 #side_form input {
-  width: 60%;
+  width: 70%;
+  border: 1px solid lightgrey;
+  padding: 10px;
 }
 
 #side_form label {
-  color: #303471;
-  font-family: sans-serif;
+  color: #082b71;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 700;
 }
 
@@ -287,14 +302,20 @@ li {
 
 #train-header {
   width: 100%;
+  padding: 0 10px;
+}
+
+#n_o_t {
+  padding-top: 10px;
 }
 
 #t_nav {
   display: grid;
   grid-template-columns: repeat(3, 33.33%);
   align-items: center;
-  background-color: #cdcfd2;
+  background-color: rgba(230, 225, 225, 0.678);
   margin: 10px 0;
+  padding: 0;
 }
 
 #t_nav_links {
@@ -320,10 +341,8 @@ li {
   display: grid;
   grid-template-columns: repeat(4, 25%);
   margin: 10px;
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   box-shadow: 10px 10px 5px grey;
-  font-weight: 600;
-  font-family: sans-serif;
 }
 
 #train-name div {
@@ -340,7 +359,9 @@ li {
   justify-self: center;
   align-self: center;
   width: 70%;
-  height: 40%;
+  height: 30%;
+  background-color: white;
+  border: 1px solid lightgrey;
 }
 
 #availability {
@@ -348,4 +369,7 @@ li {
   align-self: center;
   width: 70%;
   height: 40%;
+  background-color: #00b9f5;
+  border: 1px solid #00b9f5;
+  font-family: "Courier New", Courier, monospace;
 }
