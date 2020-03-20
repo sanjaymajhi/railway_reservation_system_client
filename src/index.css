@@ -373,3 +373,134 @@ li {
   border: 1px solid #00b9f5;
   font-family: "Courier New", Courier, monospace;
 }
+
+#book-train {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+#book-header img {
+  border: 1px solid rgb(0, 0, 5);
+}
+
+#book-body {
+  display: flex;
+  margin: 20px 0;
+}
+
+#book-main {
+  width: 70%;
+  height: 50vh;
+  padding-left: 10px;
+}
+
+.p_detail {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  text-align: left;
+  margin: 20px;
+  box-shadow: 0 0 5px lightgrey;
+}
+
+.p_detail input,
+.p_detail select {
+  min-width: 20%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  margin: 10px;
+}
+
+#passenger button {
+  background-color: #00b9f5;
+}
+
+#email-phone {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: 1px solid lightgrey;
+  box-shadow: 0 0 5px lightgrey;
+  margin: 20px;
+  padding: 10px;
+}
+
+#email-phone > div {
+  display: grid;
+  grid-template-columns: auto;
+  border-right: 1px solid lightgrey;
+}
+
+#book-side-nav {
+  width: 30%;
+}
+
+#ticket {
+  background-color: #dff1ff;
+  margin: auto;
+  width: 65%;
+}
+
+#review {
+  display: grid;
+  grid-template-columns: auto;
+  padding: 20px;
+}
+
+#review div,
+#review p {
+  text-align: left;
+}
+
+#review-train-name {
+  border: 1px solid lightgray;
+  padding: 20px;
+  box-shadow: 0 0 5px lightgray;
+}
+
+#review-station {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: 1px solid lightgray;
+  padding: 10px;
+  box-shadow: 0 0 5px lightgray;
+}
+
+.review-station-header {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+#review-availability {
+  border: 1px solid lightgray;
+  padding: 20px;
+  box-shadow: 0 0 5px lightgray;
+}
+
+#review-passenger {
+  display: grid;
+  grid-template-columns: auto;
+  box-shadow: 0 0 10px lightgray;
+}
+
+#review-passenger-header {
+  background-color: #337ab7;
+  padding: 10px;
+  color: white;
+}
+
+.review-passenger-detail {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+#review button {
+  padding: 10px;
+  width: 20%;
+  margin-top: 10px;
+  background-color: #00b9f5;
+  color: white;
+  border: 1px solid #00b9f5;
+}

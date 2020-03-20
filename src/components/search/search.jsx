@@ -3,6 +3,12 @@ import Searchsidenav from "./searchSideNav";
 import Searchresults from "./searchResults";
 import Searchheader from "./searchHeader";
 class Search extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   render() {
     return (
       <div id="train-search-page">
@@ -21,6 +27,8 @@ class Search extends Component {
           {this.props.location.state.trains.map(train => (
             <div key={train._id} className="train-search-results">
               <Searchresults
+                {...this.props}
+                date={this.props.location.state.date}
                 train={train}
                 route={this.props.location.state.route_detail}
               />
