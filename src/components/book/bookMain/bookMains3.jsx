@@ -30,7 +30,7 @@ class Bookmains3 extends Component {
         method: "get",
         headers: {
           authorization:
-            "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz"
+            "Basic "
         }
       })
         .then(res => res.json())
