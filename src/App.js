@@ -12,6 +12,7 @@ import Search from "./components/search/search";
 import Book from "./components/book/book";
 import User from "./components/user/user";
 import Ticket from "./components/ticket/ticket";
+import PNR from "./components/ticket/pnr";
 
 class App extends Component {
   state = {
@@ -48,7 +49,7 @@ class App extends Component {
             {/* ticket routes */}
             <Route path="/book/" component={Book} />
             <Route path="/ticket/" component={Ticket} />
-            <Route path="/ticket/cancel" />
+            <Route path="/pnr/" component={PNR} />
 
             {/* other routes */}
 

@@ -2,35 +2,28 @@ import React, { Component } from "react";
 class Contact extends Component {
   render() {
     return (
-      <div className="contact">
+      <div id="contact-page">
         <h1>You may contact us at : </h1>
         <p>
-          <strong>Customer Care Numbers :</strong> 0755-6610661, 0755-4090600
+          <strong>Customer Care Numbers :</strong> 1234567890, 1234567890
           (Language: Hindi and English)..
         </p>
-        <p>For Railway tickets booked through IRCTC</p>
+        <p>For Railway tickets booked through BookYourJourney.com</p>
         <p>General Information</p>
         <p>
-          <strong>I-tickets/e-tickets :</strong> care@irctc.co.in
+          <strong>e-tickets :</strong> Sanjay@BookYourJourney.com
         </p>
         <p>
-          <strong>For Cancellation E-tickets :</strong> etickets@irctc.co.in
+          <strong>For Cancellation E-tickets :</strong>{" "}
+          etickets@BookYourJourney.com
         </p>
 
         <p>
-          For IRCTC SBI Card users who do not receive the card within 01 month
-          from the date of application kindly call on the Railway SBI Card
-          Helpline nos. at 0124-39021212 or 18001801295 (if calling from
-          BSNL/MTNL line) or send email to feedback.gesbi@ge.com. For other
-          queries on your IRCTC SBI card account, kindly email at
-          loyaltyprogram@irctc.co.in
+          <strong>Registered Office / Corporate Office :</strong>
         </p>
-        <p>
-          <strong>Registered Office / Corporate Office</strong>
-        </p>
-        <p>Indian Railway Catering and Tourism Corporation Ltd.,</p>
-        <p>B-148, 11th Floor, Statesman House,</p>
-        <p>Barakhamba Road, New Delhi 110001</p>
+        <p>Book Your Journey limited,</p>
+        <p>J-83/13, Usmanpur,</p>
+        <p>New Delhi 110053</p>
       </div>
     );
   }

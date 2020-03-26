@@ -42,26 +42,6 @@ class Home extends Component {
     this.setState({ [name]: value });
   };
 
-  loadTicket = e => {
-    e.preventDefault();
-    const form = document.getElementById("find-ticket");
-    fetch("/booking/ticket/search/", {
-      method: "POST",
-      body: JSON.stringify({ pnr: form[0].value }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(res => res.json())
-      .then(data =>
-        this.props.history.push({
-          pathname: "/ticket/",
-          search: "",
-          state: { ...data }
-        })
-      );
-  };
-
   submit = e => {
     e.preventDefault();
     const url = "/booking/trains/";
@@ -99,21 +79,21 @@ class Home extends Component {
                 onChange={this.handleChange}
               >
                 <option value="" selected="selected" disabled="disabled">
-                  From *
+                  From
                 </option>
               </select>
             </div>
             <div>
               <select name="to_stn" id="to_stn" onChange={this.handleChange}>
                 <option value="" disabled="disabled" selected="selected">
-                  To *
+                  To
                 </option>
               </select>
             </div>
             <div>
               <select name="class" onChange={this.handleChange}>
                 <option value="" disabled="disabled" selected="selected">
-                  Classes *
+                  Classes
                 </option>
                 <option value="all">All Classses</option>
                 <option value="1A">1A</option>
@@ -154,17 +134,7 @@ class Home extends Component {
             <p>Instant refund with easy step by step tracking</p>
           </div>
         </div>
-        <div>
-          <form onSubmit={this.loadTicket} id="find-ticket">
-            <input
-              type="text"
-              name="pnr"
-              id="pnr"
-              placeholder="Enter your PNR no."
-            />
-            <input type="submit" value="Find Ticket" />
-          </form>
-        </div>
+
         <div id="faq">
           <h2>FAQ</h2>
           <h3>Q) How to book train tickets via RailYatri?</h3>

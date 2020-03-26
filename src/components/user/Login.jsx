@@ -70,7 +70,7 @@ class Login extends Component {
   render() {
     return (
       <div className="main">
-        <h1>Login Page</h1>
+        <h1>Login Form</h1>
         <form id="login_form" onSubmit={this.login_form_submit}>
           <label htmlFor="email">Email ID : </label>
           <input

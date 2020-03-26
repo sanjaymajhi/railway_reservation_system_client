@@ -44,7 +44,6 @@ class Navbar extends Component {
             </ul>
           )}
         </div>
-        <hr />
         <div className="nav2">
           <ul>
             <li>
@@ -57,8 +56,13 @@ class Navbar extends Component {
               <Clock format={"HH:mm:ss"} />
               {"]"}
             </li>
-            <li>Home</li>
-            <li>PNR status</li>
+            <Link to="/">
+              <li>Home</li>
+            </Link>
+            <Link to="/pnr">
+              <li>PNR status</li>
+            </Link>
+
             <li>FAQ</li>
             <li>About</li>
             <Link to="/contact/">

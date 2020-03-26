@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 class Searchsidenav extends Component {
   constructor(props) {
@@ -68,50 +69,54 @@ class Searchsidenav extends Component {
     return (
       <React.Fragment>
         <form onSubmit={this.submit} id="side_form">
-          <p id="bold">Modify Search</p>
-          <img src="images/rail_icon.png" alt="rail icon" />
-          <br />
-          <br />
-          <label htmlFor="from_stn">Origin</label>
-          <br />
-          <select name="from_stn" id="from_stn" onChange={this.handleChange}>
-            <option value="" selected="selected" disabled="disabled">
-              From *
-            </option>
-          </select>
-          <br />
-          <br />
-          <label htmlFor="to_stn">Destination</label>
-          <br />
-          <select name="to_stn" id="to_stn" onChange={this.handleChange}>
-            <option value="" disabled="disabled" selected="selected">
-              To *
-            </option>
-          </select>
-          <br />
-          <br />
-          <label htmlFor="date">Journey Date</label>
-          <br />
-          <input type="date" name="date" onChange={this.handleChange} />
-          <br />
-          <br />
-          <label htmlFor="class">Journey Class</label>
-          <br />
-          <select name="class" onChange={this.handleChange}>
-            <option value="" disabled="disabled" selected="selected">
-              Classes *
-            </option>
-            <option value="all">All Classses</option>
-            <option value="1A">1A</option>
-            <option value="2A">2A</option>
-            <option value="3A">3A</option>
-            <option value="SL">SL</option>
-            <option value="CC">CC</option>
-          </select>
-          <br />
-          <br />
-          <input type="submit" value="Search" />
+          <div>
+            <select name="from_stn" id="from_stn" onChange={this.handleChange}>
+              <option value="" selected="selected" disabled="disabled">
+                From
+              </option>
+            </select>
+          </div>
+          <div>
+            <select name="to_stn" id="to_stn" onChange={this.handleChange}>
+              <option value="" disabled="disabled" selected="selected">
+                To
+              </option>
+            </select>
+          </div>
+          <div>
+            <input
+              type="date"
+              name="date"
+              min={moment().format("YYYY-MM-DD")}
+              max={moment(Date.now())
+                .add(90, "d")
+                .format("YYYY-MM-DD")}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <select name="class" onChange={this.handleChange}>
+              <option value="" disabled="disabled" selected="selected">
+                Classes
+              </option>
+              <option value="all">All Classses</option>
+              <option value="1A">1A</option>
+              <option value="2A">2A</option>
+              <option value="3A">3A</option>
+              <option value="SL">SL</option>
+              <option value="CC">CC</option>
+            </select>
+          </div>
+          <div>
+            <input type="submit" value="Search Trains" />
+          </div>
         </form>
+        <div id="header">
+          <p>Train Name</p>
+          <p>Departure</p>
+          <p>Travel Time</p>
+          <p>Arrival</p>
+        </div>
       </React.Fragment>
     );
   }

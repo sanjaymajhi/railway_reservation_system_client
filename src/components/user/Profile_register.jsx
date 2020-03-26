@@ -119,9 +119,7 @@ class Profile extends Component {
             method="post"
           >
             <h1 style={{ gridColumn: "span 2" }}>
-              {localStorage.getItem("token")
-                ? "Profile Page"
-                : "Registeration Page"}
+              {localStorage.getItem("token") ? "Profile" : ""}
             </h1>
 
             <label htmlFor="f_name">First Name : </label>

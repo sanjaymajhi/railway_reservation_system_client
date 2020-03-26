@@ -46,7 +46,6 @@ class Ticket extends Component {
       });
   };
   render() {
-    console.log(this.props.location.state);
     const data = this.props.location.state.data;
     return (
       <div id="ticket-page">

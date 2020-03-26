@@ -105,30 +105,50 @@ class Searchresults extends Component {
     return (
       <React.Fragment>
         <div id="train-name">
-          <div>
-            {train.name}({train.train_no})
+          <div style={{ fontWeight: "600", fontSize: "25px" }}>
+            {train.name}
           </div>
-          <div>
-            {route.src_stn.name}->{route.des_stn.name}
+          <div style={{ fontWeight: "bold", fontSize: "15px" }}>
+            #{train.train_no}
           </div>
-          <div>Departs on : {train.departing_days.map(day => day + ", ")}</div>
+          <p style={{ fontWeight: "bold", fontSize: "12px" }}>
+            Departs on : {train.departing_days.map(day => day + ", ")}
+          </p>
         </div>
-        <div id="train-timing">
-          <div>
+        <div>
+          <h3>
             {new Date(train.depart_time).toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit"
             })}
-          </div>
-          <div>
+          </h3>
+          <p>
+            <strong>{route.src_stn.code}</strong>
+          </p>
+          <p style={{ fontSize: "12px", color: "gray" }}>
+            {" "}
+            <strong>{route.src_stn.name}</strong>{" "}
+          </p>
+        </div>
+        <div>
+          <h3>{hours + "H " + minutes + "m"}</h3>
+        </div>
+        <div>
+          <h3>
             {new Date(train.arrival_time).toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit"
             })}
-          </div>
-          <div>{hours + ":" + minutes}</div>
+          </h3>
+          <p>
+            <strong>{route.des_stn.code}</strong>
+          </p>
+          <p style={{ fontSize: "12px", color: "gray" }}>
+            {" "}
+            <strong>{route.des_stn.name}</strong>
+          </p>
         </div>
-        <select name="class" id="select-teir" onChange={this.classHandler}>
+        {/* <select name="class" id="select-teir" onChange={this.classHandler}>
           {train.available_tiers.map(teir => (
             <option
               key={teir}
@@ -138,7 +158,7 @@ class Searchresults extends Component {
               {teir}
             </option>
           ))}
-        </select>
+        </select> */}
         <button
           // done so that on button click right button loads the value
           id={"availability" + this.props.train._id}
