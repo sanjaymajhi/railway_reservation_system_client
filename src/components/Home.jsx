@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
 
-import Buddha from "../images/Buddha.png";
-import exterior from "../images/exterior.jpg";
-import imgad from "../images/imgad.jpeg";
-import kashmir from "../images/Kashmir.jpg";
-import manali from "../images/Manali.jpg";
-import thailand from "../images/Thailand.jpg";
-
-import rail_icon from "../images/rail_icon.png";
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -98,13 +89,10 @@ class Home extends Component {
   render() {
     return (
       <div className="main">
-        <div id="search-container">
-          <div id="search">
-            <form onSubmit={this.submit}>
-              <p id="bold">Book your ticket</p>
-              <img src={rail_icon} alt="rail icon" />
-              <br />
-              <br />
+        <div id="train-search-form">
+          <div>Train Ticket Booking</div>
+          <form onSubmit={this.submit}>
+            <div>
               <select
                 name="from_stn"
                 id="from_stn"
@@ -114,26 +102,15 @@ class Home extends Component {
                   From *
                 </option>
               </select>
-              <br />
-              <br />
+            </div>
+            <div>
               <select name="to_stn" id="to_stn" onChange={this.handleChange}>
                 <option value="" disabled="disabled" selected="selected">
                   To *
                 </option>
               </select>
-              <br />
-              <br />
-              <input
-                type="date"
-                name="date"
-                min={moment().format("YYYY-MM-DD")}
-                max={moment(Date.now())
-                  .add(90, "d")
-                  .format("YYYY-MM-DD")}
-                onChange={this.handleChange}
-              />
-              <br />
-              <br />
+            </div>
+            <div>
               <select name="class" onChange={this.handleChange}>
                 <option value="" disabled="disabled" selected="selected">
                   Classes *
@@ -145,15 +122,36 @@ class Home extends Component {
                 <option value="SL">SL</option>
                 <option value="CC">CC</option>
               </select>
-              <br />
-              <br />
-              <input type="submit" value="Search" />
-            </form>
+            </div>
+            <div>
+              <input
+                type="date"
+                name="date"
+                min={moment().format("YYYY-MM-DD")}
+                max={moment(Date.now())
+                  .add(90, "d")
+                  .format("YYYY-MM-DD")}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <input type="submit" value="Search Trains" />
+            </div>
+          </form>
+        </div>
+        <div id="feature">
+          <div>
+            <h3>Easy Payment</h3>
+            <p>Pay using any credit/debit card,wallet,net banking</p>
           </div>
-
-          <div id="rightofsearch">
-            <h1>INDIAN RAILWAYS</h1>
-            <h2>Safety Security Punctuality</h2>
+          <div>
+            <h3>Quick Book</h3>
+            <p>Sort, filter and recommendations for fast, easy booking</p>
+          </div>
+          <div>
+            {" "}
+            <h3>Fastest Refund</h3>
+            <p>Instant refund with easy step by step tracking</p>
           </div>
         </div>
         <div>
@@ -167,79 +165,71 @@ class Home extends Component {
             <input type="submit" value="Find Ticket" />
           </form>
         </div>
-        <div className="ad">
-          <h1>Call for advertisement</h1>
-        </div>
-        <div id="services-container">
-          <h1>Have you not found the right one?</h1>
-          <h1>Find a service suitable for you here.</h1>
-          <div id="services">
-            <h3>flights</h3>
-            <h3>stays</h3>
-            <h3>rail dristhi</h3>
-            <h3>e-catering</h3>
-            <h3>holiday packages</h3>
-            <h3>tourist train</h3>
-            <h3>hill railway</h3>
-            <h3>chapter train</h3>
-            <h3>gallery</h3>
-          </div>
-        </div>
-        <div className="ad">
-          <h1>Call for advertisement</h1>
-        </div>
-        <div id="holidays-container">
-          <div>
-            <img src={exterior} alt="maharaja express" />
-            <h2>Maharaja's Express</h2>
-            <p>
-              Redefining Royalty, Luxury and Comfort, Maharajas’ express takes
-              you on a sojourn to the era of bygone stately splendour of
-              princely states.
-            </p>
-          </div>
-          <div>
-            <img src={thailand} alt="Thailand" />
-            <h2>International Packages</h2>
-            <p>
-              Best deals in International Holiday packages, handpicked by IRCTC,
-              for Thailand, Dubai, Sri Lanka, Hong Kong, China, Macau, Bhutan,
-              Nepal, U.K., Europe, USA, Australia etc.
-            </p>
-          </div>
-          <div>
-            <img src={manali} alt="Manali" />
-            <h2>Domestic Air Packages</h2>
-            <p>
-              Be it the spiritual devotee seeking blessings of Tirupati, Shirdi
-              or Mata Vaishno Devi or the leisure traveller wanting to relish
-              the Blue mountains of North East,Serene lakes or Picturesque
-              Islands, IRCTC has it all.
-            </p>
-          </div>
-          <div>
-            <img src={Buddha} alt="Buddha" />
-            <h2>Buddhist Circuit Tourist Train</h2>
-            <p>
-              India, the country where Buddhism originated has rich memories of
-              the Buddhist legacy. As part of its drive towards austerity, the
-              only kind of art & architecture that it supported were Stupas,
-              Chaityas & Viharas.
-            </p>
-          </div>
-          <div>
-            <img src={kashmir} alt="Kashmir valley" />
-            <h2>Rail Tour Packages</h2>
-            <p>
-              IRCTC offers Exclusive Rail tour packages with confirmed train
-              tickets, sight-seeing and meals for enchanting Nilgiri Gangtok or
-              divine tours of Mata Vaishno Devi, Rameswaram, Madurai, Shirdi,
-              Tirupati etc.
-            </p>
-          </div>
-          <div>
-            <img id="bottlead" src={imgad} alt="advertisement" />
-          </div>
+        <div id="faq">
+          <h2>FAQ</h2>
+          <h3>Q) How to book train tickets via RailYatri?</h3>
+          <p>
+            <strong>Ans. </strong> Now book your train tickets in a jiffy with
+            these easy steps & get your PNR:
+            <ul>
+              <li>
+                - Visit BookYourJourney.com to select the boarding & arrival
+                destinations.
+              </li>
+              <li>
+                - Select a train that is best suited. Further, fill in your
+                correct passenger information.
+              </li>
+              <li>- Proceed to our easy payment gateway.</li>
+              <li>
+                - Ticket booking confirmation Email, SMS, WhatsApp message is
+                sent to our users registered details.
+              </li>
+            </ul>
+            Our users can also sort, filter and view recommendations for best
+            search results.
+          </p>
+          <h3>Q - What Document/I-Card required to book e-Ticket?</h3>
+          <p>
+            <strong>Ans. </strong>
+            The user is not required to give any input of the photo identity
+            card details of any of the passengers while booking the ticket.But
+            during the journey, all passengers must carry at least one valid ID,
+            like, Aadhar card, driving license, pan card, voter id card.
+          </p>
+          <h3>Q - How can I make payment to book e-ticket?</h3>
+          <p>
+            <strong>Ans. </strong>
+            All payment options have been grouped under specific categories
+            (viz. Credit cards, Net banking, Wallets and Multiple payment
+            service etc.) Select the desired Payment Option from the displayed
+            Payment gateway menus. Click on "Make Payment" button for
+            redirection to selected Bank website.
+          </p>
+          <h3>Q - How can I cancel e-ticket and how will I get refund?</h3>
+          <p>
+            <strong>Ans. </strong>To cancel your e-ticket log on to
+            www.bookyourjourney.com and go to My Account -> My Transactions ->
+            Booked Ticket History and select the ticket to be cancelled and then
+            click "Cancel Ticket" Cancellation would be confirmed online and the
+            refund would be credited back to the account used for booking as for
+            normal Internet tickets.
+          </p>
+          <h3>Q - What if I forget to carry Photo Identity card?</h3>
+          <p>
+            <strong>Ans. </strong>
+            One of the passenger booked on an E-ticket in a PNR is required to
+            present any of the identity cards said above in original during the
+            train journey and same will be accepted as a proof of identity
+            failing which the passenger will be treated as travelling without
+            ticket and shall be dealt as per extant Railway Rules.
+          </p>
+          <h3>Q - How to postpone/prepone journey?</h3>
+          <p>
+            <strong>Ans. </strong>
+            This can be done on line by cancelling the original ticket and
+            booking a fresh ticket.
+          </p>
         </div>
         <div id="contact">
           <img src="" alt="" />
@@ -248,8 +238,8 @@ class Home extends Component {
           <a href="scs">Twitter</a>
         </div>
         <div id="footer">
-          <p>Copyright © 2020 - www.irctc.co.in. All Rights Reserved</p>
-          <p>Designed and Hosted by CRIS</p>
+          <p>No Copyrights - www.bookyourjourney.com. No Rights Reserved</p>
+          <p>Designed and Hosted by Sanjay Majhi</p>
         </div>
       </div>
     );

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
-
-import railway from "../images/railways.png";
-import irctc from "../images/irctc_icon.jpeg";
+import rail_icon from "../images/rail_icon.png";
 
 import Clock from "react-live-clock";
 class Navbar extends Component {
@@ -13,50 +10,62 @@ class Navbar extends Component {
   };
   date = new Date();
   render() {
-    console.log("inside navbar");
     return (
       <div className="navbar">
-        <Link className="nav-left" to="/">
-          <img className="icon" src={railway} alt="indian railways" />
-        </Link>
-        <p>
-          {this.date.toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-          })}
-        </p>
-        &nbsp;[
-        <Clock format={"HH:mm:ss"} />]
-        {!this.props.token ? (
-          <ul id="navdiv1">
-            <Link to="/contact">
-              <li>Contact Us</li>
-            </Link>
-            <Link to="/user/login">
-              <li>Login</li>
-            </Link>
-            <Link to="/user/register">
-              <li>Register</li>
-            </Link>
-          </ul>
-        ) : (
-          <ul id="navdiv2">
-            <li>{}</li>
-            <Link to="/user/profile">
-              <li>profile</li>
-            </Link>
-            <Link to="/contact">
-              <li>Contact Us</li>
-            </Link>
+        <div className="nav1">
+          <Link className="nav-left" to="/">
+            <p>
+              <span>
+                <img src={rail_icon} alt="logo" />
+              </span>
+              {"  "}
+              BookYourJourney.com
+            </p>
+          </Link>
+          {!this.props.token ? (
+            <ul id="navdiv1">
+              <Link to="/user/login">
+                <li>Login</li>
+              </Link>
+              <Link to="/user/register">
+                <li>Register</li>
+              </Link>
+            </ul>
+          ) : (
+            <ul id="navdiv2">
+              <Link to="/user/profile">
+                <li>Profile</li>
+              </Link>
+              <li>
+                <a href="/" onClick={this.logout}>
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          )}
+        </div>
+        <hr />
+        <div className="nav2">
+          <ul>
             <li>
-              <a href="/" onClick={this.logout}>
-                Log Out
-              </a>
+              {this.date.toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+              })}
+              {" ["}
+              <Clock format={"HH:mm:ss"} />
+              {"]"}
             </li>
+            <li>Home</li>
+            <li>PNR status</li>
+            <li>FAQ</li>
+            <li>About</li>
+            <Link to="/contact/">
+              <li>Contact</li>
+            </Link>
           </ul>
-        )}
-        <img className="icon" src={irctc} alt="IRCTC icon" />
+        </div>
       </div>
     );
   }

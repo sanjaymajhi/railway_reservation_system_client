@@ -1,0 +1,549 @@
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: auto;
+  text-align: center;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+#bold {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+#contact {
+  width: 100%;
+  background-color: #363636;
+  padding: 30px;
+  a {
+    color: rgb(167, 162, 162);
+    font-weight: bold;
+  }
+}
+
+hr {
+  color: lightgray;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: auto;
+  height: 140px;
+  background-color: white;
+  .nav1 {
+    p {
+      font-size: x-large;
+      font-weight: bold;
+      padding-left: 20px;
+      color: #26247b;
+      img {
+        width: 20px;
+        vertical-align: middle;
+      }
+    }
+    display: grid;
+    grid-template-columns: auto auto;
+    ul {
+      justify-self: end;
+      li {
+        border: 2px solid gray;
+        margin-right: 20px;
+        color: gray;
+        padding: 10px;
+      }
+      a {
+        color: gray;
+      }
+    }
+  }
+  .nav2 {
+    ul {
+      display: flex;
+      li {
+        margin-right: 20px;
+        font-weight: 500;
+        font-family: "Roboto", sans-serif;
+        vertical-align: baseline;
+        color: black;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav-left {
+  width: 50%;
+}
+
+#navdiv1,
+#navdiv2 {
+  width: 65%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#train-search-form {
+  background-color: #023562;
+  height: 50vh;
+  div {
+    color: white;
+    padding: 10vh;
+    font-weight: bold;
+  }
+
+  form {
+    background-color: white;
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    div {
+      padding: 30px 20px;
+      select {
+        background-color: white;
+        padding: 10px;
+        border: 1px solid lightgray;
+        width: 100%;
+        height: 100%;
+      }
+      input {
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+      }
+      input[type="submit"] {
+        background-color: #1779d7;
+        border: 1px solid #1779d7;
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+#feature {
+  height: 28vh;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f5f5f5;
+  padding: 30px 0;
+  div {
+    width: 25%;
+    padding: 5px;
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    h3 {
+      font-family: sans-serif;
+      font-weight: 600;
+    }
+    p {
+      color: rgb(104, 103, 103);
+      font-family: sans-serif;
+    }
+  }
+}
+
+#faq {
+  padding: 10vh 20vh;
+  background-color: #f5f5f5;
+  h3 {
+    text-align: left;
+    font-family: sans-serif;
+    color: rgb(65, 64, 64);
+  }
+  p {
+    text-align: left;
+    font-family: sans-serif;
+    color: rgb(105, 103, 103);
+    ul {
+      li {
+        text-align: left;
+      }
+    }
+  }
+}
+
+#register_form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  margin: auto 10%;
+}
+
+#errors {
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+}
+
+#login_form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  margin: auto 20%;
+}
+
+#form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
+  margin: auto 20%;
+}
+
+#form label {
+  text-align: left;
+}
+
+#form input[type="text"],
+#form input[type="number"],
+#form input[type="select"],
+#form input[type="submit"] {
+  padding: 10px;
+  width: 100%;
+}
+
+#errors li {
+  text-align: left;
+}
+
+.contact {
+  position: absolute;
+  top: 140px;
+  left: 20%;
+  width: 60%;
+  box-shadow: 5px 10px 8px black;
+  padding: 20px;
+  p {
+    text-align: left;
+  }
+}
+
+#select_div {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: auto auto;
+  select {
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+}
+
+.admin {
+  position: absolute;
+  top: 60px;
+  left: 20%;
+  width: 50%;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.a_nav {
+  width: 20%;
+  border-right: 1px solid black;
+  height: 90vh;
+  top: 60px;
+  position: fixed;
+  overflow: auto;
+}
+
+.a_nav ul li {
+  text-align: left;
+}
+
+.a_main {
+  margin-left: 20%;
+  width: 80%;
+}
+
+#train-search-page {
+  display: flex;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+}
+
+#train-side-nav {
+  width: 20%;
+  height: 90vh;
+  position: fixed;
+  border-right: 1px solid lightgray;
+}
+
+#side_form select {
+  width: 70%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
+#side_form input {
+  width: 70%;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
+#side_form label {
+  color: #082b71;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+#train-main {
+  width: 80%;
+  position: absolute;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+#train-header {
+  width: 100%;
+  padding: 0 10px;
+}
+
+#n_o_t {
+  padding-top: 10px;
+}
+
+#t_nav {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  align-items: center;
+  background-color: rgba(230, 225, 225, 0.678);
+  margin: 10px 0;
+  padding: 0;
+}
+
+#t_nav_links {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#train_list_header {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin: 0;
+  border: 2px solid #dcdcdc;
+}
+
+#train_list_header_sec2 {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+.train-search-results {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin: 10px;
+  border: 1px solid lightgrey;
+}
+
+#train-name div {
+  text-align: left;
+  padding: 10px;
+}
+
+#train-timing {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+#select-teir {
+  justify-self: center;
+  align-self: center;
+  width: 70%;
+  height: 30%;
+  background-color: white;
+  border: 1px solid lightgrey;
+}
+
+.availability {
+  justify-self: center;
+  align-self: center;
+  width: 70%;
+  height: 40%;
+  background-color: #00b9f5;
+  border: 1px solid #00b9f5;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#book-train {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+#book-header img {
+  border: 1px solid rgb(0, 0, 5);
+}
+
+#book-body {
+  display: flex;
+  margin: 20px 0;
+}
+
+#book-main {
+  width: 70%;
+  height: 50vh;
+  padding-left: 10px;
+}
+
+.p_detail {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  text-align: left;
+  margin: 20px;
+  box-shadow: 0 0 5px lightgrey;
+}
+
+.p_detail input,
+.p_detail select {
+  min-width: 20%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  margin: 10px;
+}
+
+#passenger button {
+  background-color: #00b9f5;
+}
+
+#email-phone {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: 1px solid lightgrey;
+  box-shadow: 0 0 5px lightgrey;
+  margin: 20px;
+  padding: 10px;
+}
+
+#email-phone > div {
+  display: grid;
+  grid-template-columns: auto;
+  border-right: 1px solid lightgrey;
+}
+
+#book-side-nav {
+  width: 30%;
+}
+
+#ticket {
+  background-color: #dff1ff;
+  margin: auto;
+  width: 65%;
+}
+
+#review {
+  display: grid;
+  grid-template-columns: auto;
+  padding: 20px;
+}
+
+#review div,
+#review p {
+  text-align: left;
+}
+
+#review-train-name {
+  border: 1px solid lightgray;
+  padding: 20px;
+  box-shadow: 0 0 5px lightgray;
+}
+
+#review-station {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: 1px solid lightgray;
+  padding: 10px;
+  box-shadow: 0 0 5px lightgray;
+}
+
+.review-station-header {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+#review-availability {
+  border: 1px solid lightgray;
+  padding: 20px;
+  box-shadow: 0 0 5px lightgray;
+}
+
+#review-passenger {
+  display: grid;
+  grid-template-columns: auto;
+  box-shadow: 0 0 10px lightgray;
+}
+
+#review-passenger-header {
+  background-color: #337ab7;
+  padding: 10px;
+  color: white;
+}
+
+.review-passenger-detail {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+#review button {
+  padding: 10px;
+  width: 20%;
+  margin-top: 10px;
+  background-color: #00b9f5;
+  color: white;
+  border: 1px solid #00b9f5;
+}
+
+#ticket-page {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#ticket-page div {
+  text-align: left;
+}
+
+#find-ticket {
+  padding: 20px;
+  border: 1px solid lightgray;
+  width: 50%;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: auto auto;
+}

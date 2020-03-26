@@ -3,113 +3,20 @@ body {
 }
 
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-align: center;
   font-family: "Courier New", Courier, monospace;
 }
 
 .main {
+  display: -ms-grid;
   display: grid;
-  position: absolute;
-  top: 60px;
-  grid-template-columns: auto;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
   text-align: center;
   background-color: #ffffff;
   width: 100%;
-}
-
-.ad {
-  margin: 20px auto;
-  width: 60%;
-  border: 1px solid black;
-}
-
-#search-container {
-  display: flex;
-  height: 90vh;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0)
-    ),
-    url("./images/train.jpg");
-  background-size: cover;
-}
-
-#search {
-  width: 50%;
-  border: 1px solid lightgray;
-  box-shadow: 5px 10px 5px black;
-  background-color: white;
-  text-align: center;
-  padding: 10px;
-  margin: 10px 0 0 20%;
-  height: 70vh;
-}
-
-#search form select {
-  width: 100%;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid lightgray;
-}
-
-#search form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid lightgray;
-}
-
-#search form input[type="submit"] {
-  background-color: #2e3192;
-  color: white;
-}
-
-#rightofsearch {
-  width: 50%;
-  color: white;
-  margin: auto;
-}
-
-#search-container {
-  display: grid;
-  grid-template-columns: auto auto;
-}
-
-#services {
-  width: 80%;
-  margin: auto;
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-#services h3 {
-  border: 1px solid black;
-  margin: 10px;
-  padding: 20px 0;
-}
-
-#holidays-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-#holidays-container div {
-  padding: 10px;
-  margin: 20px;
-  text-align: left;
-  width: 90%;
-  height: 85vh;
-  border: 1px solid lightgray;
-  box-shadow: 0 0 5px lightgray;
-}
-
-#holidays-container img {
-  width: 100%;
-  height: 60%;
-}
-#holidays-container #bottlead {
-  height: 100%;
 }
 
 #bold {
@@ -122,24 +29,79 @@ a {
 
 #contact {
   width: 100%;
-  background-color: lightgray;
+  background-color: #363636;
   padding: 30px;
 }
 
-.navbar {
-  display: flex;
-  background-color: #f8f9fa;
-  align-items: center;
-  height: 60px;
-  border-bottom: 1px solid lightgray;
-  position: absolute;
-  width: 100%;
-  z-index: 100;
+#contact a {
+  color: #a7a2a2;
+  font-weight: bold;
 }
 
-.icon {
-  width: 50px;
-  border-radius: 50%;
+hr {
+  color: lightgray;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  height: 140px;
+  background-color: white;
+}
+
+.navbar .nav1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+}
+
+.navbar .nav1 p {
+  font-size: x-large;
+  font-weight: bold;
+  padding-left: 20px;
+  color: #26247b;
+}
+
+.navbar .nav1 p img {
+  width: 20px;
+  vertical-align: middle;
+}
+
+.navbar .nav1 ul {
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+.navbar .nav1 ul li {
+  border: 2px solid gray;
+  margin-right: 20px;
+  color: gray;
+  padding: 10px;
+}
+
+.navbar .nav1 ul a {
+  color: gray;
+}
+
+.navbar .nav2 ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.navbar .nav2 ul li {
+  margin-right: 20px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  vertical-align: baseline;
+  color: black;
+  padding: 10px;
 }
 
 a {
@@ -147,29 +109,125 @@ a {
 }
 
 .nav-left {
-  width: 10%;
+  width: 50%;
 }
 
 #navdiv1,
 #navdiv2 {
   width: 65%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 ul {
   list-style-type: none;
 }
 
-li {
-  display: block;
+#train-search-form {
+  background-color: #023562;
+  height: 50vh;
+}
+
+#train-search-form div {
+  color: white;
+  padding: 10vh;
+  font-weight: bold;
+}
+
+#train-search-form form {
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% 20% 20% 20% 20%;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+#train-search-form form div {
+  padding: 30px 20px;
+}
+
+#train-search-form form div select {
+  background-color: white;
   padding: 10px;
+  border: 1px solid lightgray;
+  width: 100%;
+  height: 100%;
+}
+
+#train-search-form form div input {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+#train-search-form form div input[type="submit"] {
+  background-color: #1779d7;
+  border: 1px solid #1779d7;
+  color: white;
+  font-weight: bold;
+}
+
+#feature {
+  height: 28vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #f5f5f5;
+  padding: 30px 0;
+}
+
+#feature div {
+  width: 25%;
+  padding: 5px;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+}
+
+#feature div h3 {
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+#feature div p {
+  color: #686767;
+  font-family: sans-serif;
+}
+
+#faq {
+  padding: 10vh 20vh;
+  background-color: #f5f5f5;
+}
+
+#faq h3 {
+  text-align: left;
+  font-family: sans-serif;
+  color: #414040;
+}
+
+#faq p {
+  text-align: left;
+  font-family: sans-serif;
+  color: #696767;
+}
+
+#faq p ul li {
+  text-align: left;
 }
 
 #register_form {
   width: 100%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
   grid-gap: 10px;
   margin: auto 10%;
 }
@@ -181,15 +239,19 @@ li {
 }
 
 #login_form {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
   grid-gap: 10px;
   margin: auto 20%;
 }
 
 #form {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
   grid-gap: 20px;
   margin: auto 20%;
 }
@@ -212,10 +274,11 @@ li {
 
 .contact {
   position: absolute;
-  top: 60px;
+  top: 140px;
   left: 20%;
   width: 60%;
-  box-shadow: 5px 10px 8px black;
+  -webkit-box-shadow: 5px 10px 8px black;
+          box-shadow: 5px 10px 8px black;
   padding: 20px;
 }
 
@@ -225,8 +288,10 @@ li {
 
 #select_div {
   grid-column: span 2;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
 }
 
 #select_div select {
@@ -240,8 +305,10 @@ li {
   top: 60px;
   left: 20%;
   width: 50%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
 }
 
 .a_nav {
@@ -263,6 +330,8 @@ li {
 }
 
 #train-search-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: absolute;
   top: 60px;
@@ -299,8 +368,13 @@ li {
   width: 80%;
   position: absolute;
   left: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 #train-header {
@@ -313,36 +387,48 @@ li {
 }
 
 #t_nav {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(3, 33.33%);
-  align-items: center;
+  -ms-grid-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: 33.33% 33.33% 33.33%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: rgba(230, 225, 225, 0.678);
   margin: 10px 0;
   padding: 0;
 }
 
 #t_nav_links {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto auto;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
   border: 1px solid black;
   padding: 10px;
 }
 
 #train_list_header {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(4, 25%);
+  -ms-grid-columns: 25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
   margin: 0;
   border: 2px solid #dcdcdc;
 }
 
 #train_list_header_sec2 {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(3, 33.33%);
+  -ms-grid-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: 33.33% 33.33% 33.33%;
 }
 
 .train-search-results {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(4, 25%);
+  -ms-grid-columns: 25% 25% 25% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
   margin: 10px;
   border: 1px solid lightgrey;
 }
@@ -353,13 +439,18 @@ li {
 }
 
 #train-timing {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(3, 33.33%);
+  -ms-grid-columns: 33.33% 33.33% 33.33%;
+      grid-template-columns: 33.33% 33.33% 33.33%;
 }
 
 #select-teir {
-  justify-self: center;
-  align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   width: 70%;
   height: 30%;
   background-color: white;
@@ -367,8 +458,11 @@ li {
 }
 
 .availability {
-  justify-self: center;
-  align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   width: 70%;
   height: 40%;
   background-color: #00b9f5;
@@ -380,15 +474,19 @@ li {
   position: absolute;
   top: 70px;
   width: 100%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
 }
 
 #book-header img {
-  border: 1px solid rgb(0, 0, 5);
+  border: 1px solid #000005;
 }
 
 #book-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 20px 0;
 }
@@ -404,7 +502,8 @@ li {
   padding: 10px;
   text-align: left;
   margin: 20px;
-  box-shadow: 0 0 5px lightgrey;
+  -webkit-box-shadow: 0 0 5px lightgrey;
+          box-shadow: 0 0 5px lightgrey;
 }
 
 .p_detail input,
@@ -421,17 +520,22 @@ li {
 }
 
 #email-phone {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 50% 50%;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
   border: 1px solid lightgrey;
-  box-shadow: 0 0 5px lightgrey;
+  -webkit-box-shadow: 0 0 5px lightgrey;
+          box-shadow: 0 0 5px lightgrey;
   margin: 20px;
   padding: 10px;
 }
 
 #email-phone > div {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
   border-right: 1px solid lightgrey;
 }
 
@@ -446,8 +550,10 @@ li {
 }
 
 #review {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
   padding: 20px;
 }
 
@@ -459,15 +565,19 @@ li {
 #review-train-name {
   border: 1px solid lightgray;
   padding: 20px;
-  box-shadow: 0 0 5px lightgray;
+  -webkit-box-shadow: 0 0 5px lightgray;
+          box-shadow: 0 0 5px lightgray;
 }
 
 #review-station {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 50% 50%;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
   border: 1px solid lightgray;
   padding: 10px;
-  box-shadow: 0 0 5px lightgray;
+  -webkit-box-shadow: 0 0 5px lightgray;
+          box-shadow: 0 0 5px lightgray;
 }
 
 .review-station-header {
@@ -478,13 +588,17 @@ li {
 #review-availability {
   border: 1px solid lightgray;
   padding: 20px;
-  box-shadow: 0 0 5px lightgray;
+  -webkit-box-shadow: 0 0 5px lightgray;
+          box-shadow: 0 0 5px lightgray;
 }
 
 #review-passenger {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto;
-  box-shadow: 0 0 10px lightgray;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  -webkit-box-shadow: 0 0 10px lightgray;
+          box-shadow: 0 0 10px lightgray;
 }
 
 #review-passenger-header {
@@ -511,9 +625,10 @@ li {
   position: absolute;
   top: 60px;
   width: 100%;
-
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
 }
 
 #ticket-page div {
@@ -525,6 +640,9 @@ li {
   border: 1px solid lightgray;
   width: 50%;
   margin: 10px auto;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
 }
+/*# sourceMappingURL=index.css.map */

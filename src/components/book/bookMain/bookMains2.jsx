@@ -23,7 +23,7 @@ class Bookmains2 extends Component {
       headers: {
         "content-type": "application/json",
         authorization:
-          "Basic "
+          "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz"
       }
     })
       .then(res => res.json())
