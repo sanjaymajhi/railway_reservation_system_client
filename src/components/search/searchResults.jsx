@@ -1,17 +1,26 @@
 import React, { Component } from "react";
+import moment from "moment";
 class Searchresults extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      class: "1A"
+      class: this.props.class === "all" ? "1A" : this.props.class
     };
   }
-  classHandler = e => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
-    this.setState({ [name]: value });
+
+  classHandler = async e => {
+    await this.setState({ class: e.target.value });
+    const select = document.getElementById(
+      "availability" + this.props.train._id
+    );
+    select.style.display = "block";
+    const div = document.getElementById(
+      "availability-div" + this.props.train._id
+    );
+    div.lastChild.innerHTML = "";
+    div.style.display = "none";
+    console.log(this.state);
   };
   bookHandler = e => {
     var cost = this.props.train.ticket_cost;
@@ -32,7 +41,14 @@ class Searchresults extends Component {
       default:
         cost *= 1;
     }
-    const payload = { id: this.props.train._id, date: this.props.date };
+    const depart_h = moment(this.props.train.depart_time).format("HH");
+    const depart_m = moment(this.props.train.depart_time).format("mm");
+    let depart_date = moment(this.props.date)
+      .add("h", depart_h)
+      .add("minute", depart_m)
+      .format("YYYY-MM-DD HH:mm");
+
+    const payload = { id: this.props.train._id, date: depart_date };
     fetch("/booking/train/status/", {
       method: "POST",
       body: JSON.stringify(payload),
@@ -42,24 +58,22 @@ class Searchresults extends Component {
     })
       .then(res => res.json())
       .then(availabilty => {
-        const button = document.getElementById("availability");
-
+        const button = document.getElementById(
+          "availability" + this.props.train._id
+        );
+        button.style.display = "none";
+        const div = document.getElementById(
+          "availability-div" + this.props.train._id
+        );
         if (availabilty.status === "AVL") {
-          const div = document.createElement("div");
-          div.style.padding = "20px";
-          div.style.color = "green";
-          div.style.fontWeight = "bold";
-          const newButton = document.createElement("button");
-          newButton.innerHTML = "Book Now";
-          newButton.style.fontWeight = "bold";
-          newButton.style.border = "1px solid lightgray";
-          newButton.style.padding = "10px";
-
-          div.innerHTML =
-            "Available - " + availabilty.seats + "<br/>Rs. " + cost + "<br/>";
-          div.appendChild(newButton);
-          button.replaceWith(div);
-          newButton.onclick = () => {
+          //cannot use innerhtml as it will remove button
+          const innerdiv = document.createElement("div");
+          innerdiv.append("Available - " + availabilty.seats);
+          innerdiv.appendChild(document.createElement("br"));
+          innerdiv.append("Rs. " + cost);
+          div.appendChild(innerdiv);
+          div.style.display = "block";
+          div.firstChild.onclick = () => {
             this.props.history.push({
               pathname: "../book/",
               search: "",
@@ -74,18 +88,20 @@ class Searchresults extends Component {
             });
           };
         } else {
-          const div = document.createElement("div");
-          div.style.padding = "20px";
           div.style.color = "red";
-          div.style.fontWeight = "bold";
           div.innerHTML = "Not Available";
-          button.replaceWith(div);
+          div.style.display = "block";
         }
       });
   };
   render() {
     const train = this.props.train;
     const route = this.props.route;
+    const depart_time = new Date(this.props.train.depart_time);
+    const arrival_time = new Date(this.props.train.arrival_time);
+    let duration = (arrival_time - depart_time) / (1000 * 60 * 60);
+    let hours = duration - (duration % 1);
+    let minutes = parseFloat((duration % 1) * 60).toPrecision(2);
     return (
       <React.Fragment>
         <div id="train-name">
@@ -98,20 +114,60 @@ class Searchresults extends Component {
           <div>Departs on : {train.departing_days.map(day => day + ", ")}</div>
         </div>
         <div id="train-timing">
-          <div>{new Date(train.depart_time).toLocaleTimeString()}</div>
-          <div>{new Date(train.arrival_time).toLocaleTimeString()}</div>
-          <div>17 hours</div>
+          <div>
+            {new Date(train.depart_time).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })}
+          </div>
+          <div>
+            {new Date(train.arrival_time).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })}
+          </div>
+          <div>{hours + ":" + minutes}</div>
         </div>
         <select name="class" id="select-teir" onChange={this.classHandler}>
           {train.available_tiers.map(teir => (
-            <option key={teir} value={teir}>
+            <option
+              key={teir}
+              value={teir}
+              selected={teir === this.state.class ? true : false}
+            >
               {teir}
             </option>
           ))}
         </select>
-        <button id="availability" onClick={this.bookHandler}>
+        <button
+          // done so that on button click right button loads the value
+          id={"availability" + this.props.train._id}
+          className="availability"
+          onClick={this.bookHandler}
+        >
           Check availability and fare
         </button>
+        <div
+          id={"availability-div" + this.props.train._id}
+          style={{
+            padding: "20px",
+            color: "green",
+            fontWeight: "bold",
+            display: "none"
+          }}
+        >
+          <button
+            style={{
+              fontWeight: "bold",
+              border: "1px solid lightgray",
+              padding: "10px"
+            }}
+          >
+            Book Now
+          </button>
+          <br />
+          <br />
+        </div>
       </React.Fragment>
     );
   }

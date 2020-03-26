@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Bookheader from "./bookHeader";
 import Booksidenav from "./bookSideNav/bookSideNav";
 import Bookmain from "./bookMain/bookMain";
+
+import moment from "moment";
+
 class Book extends Component {
   constructor(props) {
     super(props);
@@ -46,13 +49,20 @@ class Book extends Component {
 
   createDepartAndArrivalDate = () => {
     const data = this.props.location.state;
+    const depart_h = moment(data.depart_time).format("HH");
+    const depart_m = moment(data.depart_time).format("mm");
+    let depart_date = moment(data.date)
+      .add("h", depart_h)
+      .add("minute", depart_m)
+      .format("YYYY-MM-DD HH:mm");
+
     const depart_time = new Date(data.depart_time);
     const arrival_time = new Date(data.arrival_time);
-    const duration = Math.abs(depart_time - arrival_time) / (1000 * 60); //in minutes
-    let arrival_date =
-      new Date(data.date).getTime() + duration * 60000 - 5.5 * 60 * 60 * 1000;
-    let depart_date =
-      new Date(data.date).getTime() + depart_time.getMilliseconds();
+    const duration = Math.abs(depart_time - arrival_time) / (1000 * 60);
+    console.log(duration);
+    let arrival_date = moment(depart_date)
+      .add("minute", duration)
+      .format("YYYY-MM-DD HH:mm");
     return { depart_date: depart_date, arrival_date: arrival_date };
   };
 
@@ -84,6 +94,7 @@ class Book extends Component {
         <div id="book-body">
           <div id="book-main">
             <Bookmain
+              {...this.props}
               count={this.countHandler}
               cost={this.costHandler}
               ticket_rate={this.state.cost}

@@ -18,7 +18,6 @@ class Profile extends Component {
       password: ""
     };
     this.getProfile();
-    console.log(this.props);
   }
 
   handleChange = e => {
@@ -67,7 +66,6 @@ class Profile extends Component {
       token: token,
       ...this.state
     };
-    console.log(data);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(data),
@@ -111,125 +109,127 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className={this.props.admin ? "admin" : "main"}>
-        <form
-          id="register_form"
-          onSubmit={
-            localStorage.getItem("token") ? this.updateProfile : this.register
-          }
-          method="post"
-        >
-          <h1>
-            {localStorage.getItem("token")
-              ? "Profile Page"
-              : "Registeration Page"}
-          </h1>
-          <div />
-          <label htmlFor="f_name">First Name : </label>
-          <input
-            id="f_name"
-            type="text"
-            name="f_name"
-            value={this.state.f_name}
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="l_name">Last Name : </label>
-          <input
-            id="l_name"
-            type="text"
-            name="l_name"
-            value={this.state.l_name}
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="username">Username : </label>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="dob">Date of Birth : </label>
-          <input
-            id="dob"
-            type="date"
-            name="dob"
-            value={this.state.dob}
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="password">Password : </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="email">Email : </label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="mobile">Mobile Number : </label>
-          <input
-            id="mobile"
-            type="text"
-            name="mobile"
-            value={this.state.mobile}
-            onChange={this.handleChange}
-            required
-          />
-          <label htmlFor="gender">Gender :</label>
-          <select
-            id="gender"
-            name="gender"
-            onChange={this.handleChange}
-            required
+      <React.Fragment>
+        <div className="admin">
+          <form
+            id="register_form"
+            onSubmit={
+              localStorage.getItem("token") ? this.updateProfile : this.register
+            }
+            method="post"
           >
-            {localStorage.getItem("token") ? (
-              ""
-            ) : (
-              <option value="" selected="selected" disabled>
-                Choose Gender
+            <h1 style={{ gridColumn: "span 2" }}>
+              {localStorage.getItem("token")
+                ? "Profile Page"
+                : "Registeration Page"}
+            </h1>
+
+            <label htmlFor="f_name">First Name : </label>
+            <input
+              id="f_name"
+              type="text"
+              name="f_name"
+              value={this.state.f_name}
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="l_name">Last Name : </label>
+            <input
+              id="l_name"
+              type="text"
+              name="l_name"
+              value={this.state.l_name}
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="username">Username : </label>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="dob">Date of Birth : </label>
+            <input
+              id="dob"
+              type="date"
+              name="dob"
+              value={this.state.dob}
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="password">Password : </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="email">Email : </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="mobile">Mobile Number : </label>
+            <input
+              id="mobile"
+              type="text"
+              name="mobile"
+              value={this.state.mobile}
+              onChange={this.handleChange}
+              required
+            />
+            <label htmlFor="gender">Gender :</label>
+            <select
+              id="gender"
+              name="gender"
+              onChange={this.handleChange}
+              required
+            >
+              {localStorage.getItem("token") ? (
+                ""
+              ) : (
+                <option value="" selected="selected" disabled>
+                  Choose Gender
+                </option>
+              )}
+              <option
+                value="M"
+                selected={this.state.gender === "M" ? true : false}
+              >
+                Male
               </option>
-            )}
-            <option
-              value="M"
-              selected={this.state.gender === "M" ? true : false}
-            >
-              Male
-            </option>
-            <option
-              value="F"
-              selected={this.state.gender === "F" ? true : false}
-            >
-              Female
-            </option>
-            <option
-              value="O"
-              selected={this.state.gender === "O" ? true : false}
-            >
-              Others
-            </option>
-          </select>
-          <div></div>
-          <input
-            type="submit"
-            value={localStorage.getItem("token") ? "Update" : "Register"}
-          />
-        </form>
-        <h2 id="update_visible" style={{ visibility: "hidden" }}>
-          Profile Updated...
-        </h2>
-      </div>
+              <option
+                value="F"
+                selected={this.state.gender === "F" ? true : false}
+              >
+                Female
+              </option>
+              <option
+                value="O"
+                selected={this.state.gender === "O" ? true : false}
+              >
+                Others
+              </option>
+            </select>
+            <div></div>
+            <input
+              type="submit"
+              value={localStorage.getItem("token") ? "Update" : "Register"}
+            />
+          </form>
+          <h2 id="update_visible" style={{ visibility: "hidden" }}>
+            Profile Updated...
+          </h2>
+        </div>
+      </React.Fragment>
     );
   }
 }

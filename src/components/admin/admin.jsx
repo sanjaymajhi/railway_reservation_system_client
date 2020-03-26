@@ -12,7 +12,6 @@ class Admin extends Component {
     return false;
   }
   render() {
-    console.log("inside admin");
     return (
       <React.Fragment>
         <Anav />

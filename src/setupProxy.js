@@ -8,4 +8,11 @@ module.exports = function(app) {
       changeOrigin: true
     })
   );
+  app.use(
+    "/payments/",
+    createProxyMiddleware({
+      target: "https://api.razorpay.com/v1/",
+      changeOrigin: true
+    })
+  );
 };

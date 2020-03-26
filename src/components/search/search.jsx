@@ -3,25 +3,21 @@ import Searchsidenav from "./searchSideNav";
 import Searchresults from "./searchResults";
 import Searchheader from "./searchHeader";
 class Search extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div id="train-search-page">
         <div id="train-side-nav">
-          <Searchsidenav />
+          <Searchsidenav {...this.props} />
         </div>
         <div id="train-main">
           <div id="train-header">
             <Searchheader
+              {...this.props}
               count={this.props.location.state.trains.length}
-              src_stn={this.props.location.state.route_detail.src_stn.name}
-              des_stn={this.props.location.state.route_detail.des_stn.name}
+              src_stn={this.props.location.state.route_detail.src_stn}
+              des_stn={this.props.location.state.route_detail.des_stn}
               date={this.props.location.state.date}
+              class={this.props.location.state.class}
             />
           </div>
           {this.props.location.state.trains.map(train => (
@@ -29,6 +25,7 @@ class Search extends Component {
               <Searchresults
                 {...this.props}
                 date={this.props.location.state.date}
+                class={this.props.location.state.class}
                 train={train}
                 route={this.props.location.state.route_detail}
               />

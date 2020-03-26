@@ -10,6 +10,8 @@ import "./index.css";
 import Admin from "./components/admin/admin";
 import Search from "./components/search/search";
 import Book from "./components/book/book";
+import User from "./components/user/user";
+import Ticket from "./components/ticket/ticket";
 
 class App extends Component {
   state = {
@@ -36,17 +38,17 @@ class App extends Component {
               )}
             />
             <Route path="/user/register" component={Profile} />
-            <Route path="/user/profile" component={Profile} />
             <Route path="/user/logout" component={Home} />
 
             <Route path="/search" render={props => <Search {...props} />} />
 
             <Route path="/admin/" render={props => <Admin {...props} />} />
+            <Route path="/user/" render={props => <User {...props} />} />
 
             {/* ticket routes */}
             <Route path="/book/" component={Book} />
-            <Route path="/ticket/:id" exact />
-            <Route path="/ticket/:id/cancel" />
+            <Route path="/ticket/" component={Ticket} />
+            <Route path="/ticket/cancel" />
 
             {/* other routes */}
 

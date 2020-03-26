@@ -37,7 +37,6 @@ class Bookmains3 extends Component {
         .then(fetched => {
           if (fetched.payment_id !== null) {
             ticket.paymentId = fetched.payment_id;
-            console.log(ticket);
             fetch("/booking/ticket/", {
               method: "POST",
               body: JSON.stringify({ ...ticket }),
@@ -46,7 +45,21 @@ class Bookmains3 extends Component {
               }
             })
               .then(res => res.json())
-              .then(data => console.log(data.status));
+              .then(data =>
+                fetch("/booking/ticket/search/", {
+                  method: "post",
+                  body: JSON.stringify({ pnr: data.id }),
+                  headers: { "content-type": "application/json" }
+                })
+                  .then(res => res.json())
+                  .then(data =>
+                    this.props.history.push({
+                      pathname: "/ticket/",
+                      search: "",
+                      state: { ...data }
+                    })
+                  )
+              );
             clearInterval(fetchPay);
           }
         });
@@ -54,7 +67,18 @@ class Bookmains3 extends Component {
   };
 
   render() {
-    return <React.Fragment></React.Fragment>;
+    return (
+      <React.Fragment>
+        <br />
+        <br />
+        <strong>Please Complete your payment within 5 minutes...</strong>
+        <p>Payment link has been sent to your mobile phone and email.</p>
+        <p>
+          After you have completed your payment, your seats will be confirmed
+          and ticket will be available for download.
+        </p>
+      </React.Fragment>
+    );
   }
 }
 

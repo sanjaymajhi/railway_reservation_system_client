@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import Buddha from "../images/Buddha.png";
 import exterior from "../images/exterior.jpg";
@@ -50,6 +51,26 @@ class Home extends Component {
     this.setState({ [name]: value });
   };
 
+  loadTicket = e => {
+    e.preventDefault();
+    const form = document.getElementById("find-ticket");
+    fetch("/booking/ticket/search/", {
+      method: "POST",
+      body: JSON.stringify({ pnr: form[0].value }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(res => res.json())
+      .then(data =>
+        this.props.history.push({
+          pathname: "/ticket/",
+          search: "",
+          state: { ...data }
+        })
+      );
+  };
+
   submit = e => {
     e.preventDefault();
     const url = "/booking/trains/";
@@ -63,11 +84,15 @@ class Home extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        this.props.history.push({
-          pathname: "/search/",
-          search: "",
-          state: { ...data, date: this.state.date }
-        });
+        if (data.found === "success") {
+          this.props.history.push({
+            pathname: "/search/",
+            search: "",
+            state: { ...data, date: this.state.date, class: this.state.class }
+          });
+        } else {
+          alert(data.error.msg);
+        }
       });
   };
   render() {
@@ -98,7 +123,15 @@ class Home extends Component {
               </select>
               <br />
               <br />
-              <input type="date" name="date" onChange={this.handleChange} />
+              <input
+                type="date"
+                name="date"
+                min={moment().format("YYYY-MM-DD")}
+                max={moment(Date.now())
+                  .add(90, "d")
+                  .format("YYYY-MM-DD")}
+                onChange={this.handleChange}
+              />
               <br />
               <br />
               <select name="class" onChange={this.handleChange}>
@@ -117,10 +150,22 @@ class Home extends Component {
               <input type="submit" value="Search" />
             </form>
           </div>
+
           <div id="rightofsearch">
             <h1>INDIAN RAILWAYS</h1>
             <h2>Safety Security Punctuality</h2>
           </div>
+        </div>
+        <div>
+          <form onSubmit={this.loadTicket} id="find-ticket">
+            <input
+              type="text"
+              name="pnr"
+              id="pnr"
+              placeholder="Enter your PNR no."
+            />
+            <input type="submit" value="Find Ticket" />
+          </form>
         </div>
         <div className="ad">
           <h1>Call for advertisement</h1>

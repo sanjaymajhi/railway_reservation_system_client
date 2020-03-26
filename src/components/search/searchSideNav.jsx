@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class Searchsidenav extends Component {
   constructor(props) {
@@ -44,7 +43,6 @@ class Searchsidenav extends Component {
     e.preventDefault();
     const url = "/booking/trains/";
     const payload = { ...this.state };
-    console.log(payload);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(payload),
@@ -53,12 +51,20 @@ class Searchsidenav extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => {
+        if (data.found === "success") {
+          this.props.history.push({
+            pathname: "/search/",
+            search: "",
+            state: { ...data, date: this.state.date, class: this.state.class }
+          });
+        } else {
+          alert(data.error.msg);
+        }
+      });
   };
 
   render() {
-    console.log("inside search nav");
-    console.log(this.props.data);
     return (
       <React.Fragment>
         <form onSubmit={this.submit} id="side_form">
