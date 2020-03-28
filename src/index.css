@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 body {
   margin: 0;
 }
@@ -6,6 +7,22 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-align: center;
+  font-family: sans-serif;
+}
+
+button, #train-search-page #train-main .train-search-results button, #book-main button {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #008cff;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 30px;
+  border: 1px solid lightgray;
+  -webkit-box-shadow: 0 0 5px lightgray;
+          box-shadow: 0 0 5px lightgray;
   font-family: sans-serif;
 }
 
@@ -398,11 +415,11 @@ ul {
 #train-search-page #train-main .train-search-results {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 20% 20% 20% 20% 20%;
-      grid-template-columns: 20% 20% 20% 20% 20%;
+  -ms-grid-columns: 20% 15% 15% 15% 35%;
+      grid-template-columns: 20% 15% 15% 15% 35%;
   -webkit-box-shadow: 0 0 5px lightgray;
           box-shadow: 0 0 5px lightgray;
-  margin: 10px 20px;
+  margin: 10px 5vw;
   border: 1px solid lightgrey;
 }
 
@@ -416,6 +433,11 @@ ul {
 
 #train-search-page #train-main .train-search-results div h3 {
   text-align: left;
+}
+
+#train-search-page #train-main .train-search-results button {
+  width: 70%;
+  height: 30%;
 }
 
 #train-search-page #train-main .train-search-results #train-name {
@@ -446,17 +468,12 @@ ul {
   border: 1px solid lightgrey;
 }
 
-#train-search-page #train-main .train-search-results .availability {
-  -ms-grid-column-align: center;
-      justify-self: center;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  width: 70%;
-  height: 40%;
-  background-color: #00b9f5;
-  border: 1px solid #00b9f5;
-  font-family: "Courier New", Courier, monospace;
+#train-search-page #train-main #nearby-date-results {
+  grid-column: span 5;
+  height: 100px;
+  background-color: #fafafa;
+  -webkit-box-shadow: 0 0 5px #dddddd;
+          box-shadow: 0 0 5px #dddddd;
 }
 
 #train-search-page #train-side-nav {
@@ -467,9 +484,10 @@ ul {
 #train-search-page #train-side-nav #header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 20% 20% 20% 20% 20%;
-      grid-template-columns: 20% 20% 20% 20% 20%;
+  -ms-grid-columns: 20% 15% 15% 15% 35%;
+      grid-template-columns: 20% 15% 15% 15% 35%;
   background-color: white;
+  padding: 0 5vw;
 }
 
 #train-search-page #train-side-nav #header p {
@@ -517,7 +535,7 @@ ul {
 
 #book-train {
   position: absolute;
-  top: 70px;
+  top: 160px;
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -542,6 +560,14 @@ ul {
   padding-left: 10px;
 }
 
+#book-main #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #book-main button, #book-main button {
+  width: 20vw;
+  height: 8vh;
+  background: -webkit-gradient(linear, left top, right top, from(#4383f3), to(#2d67b2));
+  background: linear-gradient(to right, #4383f3, #2d67b2);
+  color: white;
+}
+
 .p_detail {
   border: 1px solid lightgrey;
   padding: 10px;
@@ -560,8 +586,9 @@ ul {
   margin: 10px;
 }
 
-#passenger button {
-  background-color: #00b9f5;
+#passenger button, #passenger #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #passenger button {
+  background: -webkit-gradient(linear, left top, right top, from(#51b0fe), to(#0c60f4));
+  background: linear-gradient(to right, #51b0fe, #0c60f4);
 }
 
 #email-phone {
@@ -589,9 +616,36 @@ ul {
 }
 
 #ticket {
-  background-color: #dff1ff;
   margin: auto;
   width: 65%;
+  padding: 20px 0;
+}
+
+#ticket div {
+  border: 1px solid lightgray;
+  -webkit-box-shadow: 0 0 5px lightgray;
+          box-shadow: 0 0 5px lightgray;
+}
+
+#ticket div div {
+  background: -webkit-gradient(linear, left top, right top, from(#2d67b2), to(#4383f3));
+  background: linear-gradient(to right, #2d67b2, #4383f3);
+  border: 1px solid #2d67b2;
+  color: white;
+  font-weight: bold;
+  padding: 20px 10px;
+}
+
+#ticket div ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  padding: 0 1vw;
+}
+
+#ticket div ul li {
+  text-align: left;
 }
 
 #review {
@@ -657,7 +711,7 @@ ul {
   padding: 10px;
 }
 
-#review button {
+#review button, #review #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #review button {
   padding: 10px;
   width: 20%;
   margin-top: 10px;

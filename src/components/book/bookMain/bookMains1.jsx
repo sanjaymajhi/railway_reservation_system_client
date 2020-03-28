@@ -18,6 +18,7 @@ class Bookmains1 extends Component {
     newPassenger.onsubmit = this.addPassenger;
     newPassenger[0].value = "";
     newPassenger[1].value = "";
+    newPassenger.firstChild.innerHTML = this.props.state.count + 1 + ".";
     const passenger = document.getElementById("passenger");
     passenger.appendChild(newPassenger);
     await this.setState({
@@ -68,8 +69,19 @@ class Bookmains1 extends Component {
     return (
       <React.Fragment>
         <div id="passenger">
-          Note: The ID card will be required during journey
+          <h2>Passenger Details</h2>
+
           <form className="p_detail" id="passenger1">
+            <div
+              style={{
+                textAlign: "left",
+                fontWeight: "bold",
+                display: "inline"
+              }}
+            >
+              {" "}
+              1.
+            </div>
             <input type="text" name="name" id="name" placeholder="Full Name" />
             <input type="number" name="age" id="age" placeholder="Age" />
             <select name="gender" id="gender">
@@ -89,9 +101,8 @@ class Bookmains1 extends Component {
             </select>
           </form>
         </div>
-        <a onClick={this.handleCount} style={{ color: "#1457a7" }}>
-          Add passengers
-        </a>
+        <p>Note: The ID card will be required during journey</p>
+        <button onClick={this.handleCount}>+ Add passengers</button>
         <div id="email-phone">
           <div>
             <div>
@@ -111,16 +122,7 @@ class Bookmains1 extends Component {
           <strong>Note : </strong>
           To change mobile or email, update your profile.
         </p>
-        <button
-          onClick={this.handleSubmit}
-          style={{
-            backgroundColor: "#00b9f5",
-            padding: "10px",
-            border: "1px solid #00b9f5"
-          }}
-        >
-          Continue
-        </button>
+        <button onClick={this.handleSubmit}>Continue</button>
       </React.Fragment>
     );
   }

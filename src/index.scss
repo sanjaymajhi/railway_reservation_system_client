@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 body {
   margin: 0;
 }
@@ -5,6 +7,18 @@ body {
 * {
   box-sizing: border-box;
   text-align: center;
+  font-family: sans-serif;
+}
+
+button {
+  justify-self: center;
+  align-self: center;
+  color: #008cff;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 30px;
+  border: 1px solid lightgray;
+  box-shadow: 0 0 5px lightgray;
   font-family: sans-serif;
 }
 
@@ -326,9 +340,9 @@ ul {
     flex-direction: column;
     .train-search-results {
       display: grid;
-      grid-template-columns: 20% 20% 20% 20% 20%;
+      grid-template-columns: 20% 15% 15% 15% 35%;
       box-shadow: 0 0 5px lightgray;
-      margin: 10px 20px;
+      margin: 10px 5vw;
       border: 1px solid lightgrey;
       div {
         padding: 0 20px;
@@ -338,6 +352,11 @@ ul {
         h3 {
           text-align: left;
         }
+      }
+      button {
+        @extend button;
+        width: 70%;
+        height: 30%;
       }
       #train-name {
         padding: 10px 0;
@@ -361,15 +380,12 @@ ul {
         background-color: white;
         border: 1px solid lightgrey;
       }
-      .availability {
-        justify-self: center;
-        align-self: center;
-        width: 70%;
-        height: 40%;
-        background-color: #00b9f5;
-        border: 1px solid #00b9f5;
-        font-family: "Courier New", Courier, monospace;
-      }
+    }
+    #nearby-date-results {
+      grid-column: span 5;
+      height: 100px;
+      background-color: #fafafa;
+      box-shadow: 0 0 5px #dddddd;
     }
   }
 
@@ -377,8 +393,9 @@ ul {
     background: linear-gradient(to top, #023562, #081e3b);
     #header {
       display: grid;
-      grid-template-columns: 20% 20% 20% 20% 20%;
+      grid-template-columns: 20% 15% 15% 15% 35%;
       background-color: white;
+      padding: 0 5vw;
       p {
         padding-left: 30px;
         justify-self: left;
@@ -421,7 +438,7 @@ ul {
 
 #book-train {
   position: absolute;
-  top: 70px;
+  top: 160px;
   width: 100%;
   display: grid;
   grid-template-columns: auto;
@@ -440,6 +457,13 @@ ul {
   width: 70%;
   height: 50vh;
   padding-left: 10px;
+  button {
+    @extend button;
+    width: 20vw;
+    height: 8vh;
+    background: linear-gradient(to right, #4383f3, #2d67b2);
+    color: white;
+  }
 }
 
 .p_detail {
@@ -460,7 +484,7 @@ ul {
 }
 
 #passenger button {
-  background-color: #00b9f5;
+  background: linear-gradient(to right, #51b0fe, #0c60f4);
 }
 
 #email-phone {
@@ -483,9 +507,28 @@ ul {
 }
 
 #ticket {
-  background-color: #dff1ff;
   margin: auto;
   width: 65%;
+  padding: 20px 0;
+  div {
+    border: 1px solid lightgray;
+    box-shadow: 0 0 5px lightgray;
+    div {
+      background: linear-gradient(to right, #2d67b2, #4383f3);
+      border: 1px solid #2d67b2;
+      color: white;
+      font-weight: bold;
+      padding: 20px 10px;
+    }
+    ul {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      padding: 0 1vw;
+      li {
+        text-align: left;
+      }
+    }
+  }
 }
 
 #review {

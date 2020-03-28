@@ -165,7 +165,7 @@ class Searchresults extends Component {
           className="availability"
           onClick={this.bookHandler}
         >
-          Check availability and fare
+          NEARBY DATES
         </button>
         <div
           id={"availability-div" + this.props.train._id}
@@ -188,6 +188,7 @@ class Searchresults extends Component {
           <br />
           <br />
         </div>
+        <div id="nearby-date-results"></div>
       </React.Fragment>
     );
   }
