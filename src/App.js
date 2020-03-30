@@ -16,17 +16,21 @@ import PNR from "./components/ticket/pnr";
 
 class App extends Component {
   state = {
-    token: localStorage.getItem("token")
+    token: localStorage.getItem("token"),
+    admin: Boolean
   };
-  tokenhandler = token => {
-    this.setState({ token: token });
+  tokenhandler = (token, admin) => {
+    this.setState({ token: token, admin: admin });
   };
   render() {
-    console.log("inside app");
     return (
       <Router>
         <div className="App">
-          <Navbar handleToken={this.tokenhandler} token={this.state.token} />
+          <Navbar
+            handleToken={this.tokenhandler}
+            token={this.state.token}
+            admin={this.state.admin}
+          />
           <Switch>
             <Route path="/" exact component={Home} />
 

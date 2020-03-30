@@ -5,21 +5,31 @@ class Anav extends Component {
     return false;
   }
 
-  navUnhide = id => {
+  navUnhide = (e, id) => {
+    const lastChild = e.target.lastChild;
     if (document.getElementById(id).style.display === "block") {
       document.getElementById(id).style.display = "none";
+      lastChild.innerHTML = "arrow_drop_down";
+      e.target.style.backgroundColor = "#2b4b75";
     } else {
       document.getElementById(id).style.display = "block";
+      lastChild.innerHTML = "arrow_drop_up";
+      e.target.style.backgroundColor = "black";
     }
   };
   render() {
-    console.log("inside admin nav");
     return (
       <div className="a_nav">
-        <ul>
-          <h2 onClick={() => this.navUnhide("nav-hide1")}>Create</h2>
-          <hr />
-          <div id="nav-hide1" style={{ display: "none" }}>
+        <h2>Menu</h2>
+
+        <p onClick={e => this.navUnhide(e, "nav-hide1")}>
+          {" "}
+          <i className="material-icons">create</i> Create{" "}
+          <i className="material-icons">arrow_drop_down</i>
+        </p>
+
+        <div id="nav-hide1" style={{ display: "none" }}>
+          <ul>
             <Link to="/admin/train/create">
               <li>Create Train</li>
             </Link>
@@ -29,10 +39,15 @@ class Anav extends Component {
             <Link to="/admin/station/create">
               <li>Create Station</li>
             </Link>
-          </div>
-          <h2 onClick={() => this.navUnhide("nav-hide2")}>Search</h2>
-          <hr />
-          <div id="nav-hide2" style={{ display: "none" }}>
+          </ul>
+        </div>
+        <p onClick={e => this.navUnhide(e, "nav-hide2")}>
+          <i className="material-icons">search</i> Search{" "}
+          <i className="material-icons">arrow_drop_down</i>
+        </p>
+
+        <div id="nav-hide2" style={{ display: "none" }}>
+          <ul>
             <Link>
               <li>Search Train</li>
             </Link>
@@ -42,10 +57,15 @@ class Anav extends Component {
             <Link>
               <li>Search Station</li>
             </Link>
-          </div>
-          <h2 onClick={() => this.navUnhide("nav-hide3")}>Update</h2>
-          <hr />
-          <div id="nav-hide3" style={{ display: "none" }}>
+          </ul>
+        </div>
+        <p onClick={e => this.navUnhide(e, "nav-hide3")}>
+          <i className="material-icons">update</i> Update{" "}
+          <i className="material-icons">arrow_drop_down</i>
+        </p>
+
+        <div id="nav-hide3" style={{ display: "none" }}>
+          <ul>
             <Link>
               <li>Update Train</li>
             </Link>
@@ -55,10 +75,15 @@ class Anav extends Component {
             <Link>
               <li>Update Station</li>
             </Link>
-          </div>
-          <h2 onClick={() => this.navUnhide("nav-hide4")}>Delete</h2>
-          <hr />
-          <div id="nav-hide4" style={{ display: "none" }}>
+          </ul>
+        </div>
+        <p onClick={e => this.navUnhide(e, "nav-hide4")}>
+          <i className="material-icons">delete</i> Delete{" "}
+          <i className="material-icons">arrow_drop_down</i>
+        </p>
+
+        <div id="nav-hide4" style={{ display: "none" }}>
+          <ul>
             <Link>
               <li>Delete Train</li>
             </Link>
@@ -68,8 +93,8 @@ class Anav extends Component {
             <Link>
               <li>Delete Station</li>
             </Link>
-          </div>
-        </ul>
+          </ul>
+        </div>
       </div>
     );
   }

@@ -20,9 +20,10 @@ class Searchresults extends Component {
     );
     div.lastChild.innerHTML = "";
     div.style.display = "none";
-    console.log(this.state);
   };
   bookHandler = e => {
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     var cost = this.props.train.ticket_cost;
 
     switch (this.state.class) {
@@ -58,6 +59,8 @@ class Searchresults extends Component {
     })
       .then(res => res.json())
       .then(availabilty => {
+        const overlay = document.querySelector(".overlay");
+        overlay.style.display = "none";
         const button = document.getElementById(
           "availability" + this.props.train._id
         );
@@ -101,7 +104,7 @@ class Searchresults extends Component {
     const arrival_time = new Date(this.props.train.arrival_time);
     let duration = (arrival_time - depart_time) / (1000 * 60 * 60);
     let hours = duration - (duration % 1);
-    let minutes = parseFloat((duration % 1) * 60).toPrecision(2);
+    let minutes = Math.round((duration % 1) * 60);
     return (
       <React.Fragment>
         <div id="train-name">
@@ -148,17 +151,6 @@ class Searchresults extends Component {
             <strong>{route.des_stn.name}</strong>
           </p>
         </div>
-        {/* <select name="class" id="select-teir" onChange={this.classHandler}>
-          {train.available_tiers.map(teir => (
-            <option
-              key={teir}
-              value={teir}
-              selected={teir === this.state.class ? true : false}
-            >
-              {teir}
-            </option>
-          ))}
-        </select> */}
         <button
           // done so that on button click right button loads the value
           id={"availability" + this.props.train._id}
@@ -189,6 +181,22 @@ class Searchresults extends Component {
           <br />
         </div>
         <div id="nearby-date-results"></div>
+        <div className="overlay">
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p
+            style={{
+              position: "absolute",
+              top: "60vh",
+              left: "44vw",
+              color: "white"
+            }}
+          >
+            <strong>Finding Trains...</strong>
+          </p>
+        </div>
       </React.Fragment>
     );
   }

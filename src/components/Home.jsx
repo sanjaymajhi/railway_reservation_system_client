@@ -44,6 +44,8 @@ class Home extends Component {
 
   submit = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     const url = "/booking/trains/";
     const payload = { ...this.state };
     fetch(url, {
@@ -210,6 +212,22 @@ class Home extends Component {
         <div id="footer">
           <p>No Copyrights - www.bookyourjourney.com. No Rights Reserved</p>
           <p>Designed and Hosted by Sanjay Majhi</p>
+        </div>
+        <div className="overlay">
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p
+            style={{
+              position: "absolute",
+              top: "60vh",
+              left: "44vw",
+              color: "white"
+            }}
+          >
+            <strong>Finding Trains...</strong>
+          </p>
         </div>
       </div>
     );

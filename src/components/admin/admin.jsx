@@ -13,14 +13,14 @@ class Admin extends Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <div className="admin">
         <Anav />
 
         <Switch>
           <Route
             path="/admin/"
             exact
-            render={props => <Profile {...props} admin={true} />}
+            render={props => <Profile {...props} />}
           />
           {/* train routes */}
 
@@ -34,7 +34,7 @@ class Admin extends Component {
 
           <Route path="/admin/station/create" component={Station} />
         </Switch>
-      </React.Fragment>
+      </div>
     );
   }
 }

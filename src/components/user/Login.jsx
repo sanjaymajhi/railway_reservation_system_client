@@ -20,6 +20,8 @@ class Login extends Component {
 
   login_form_submit = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     const url = "/user/login/";
     const payload = {
       email: this.state.email,
@@ -38,7 +40,8 @@ class Login extends Component {
       .then(data => {
         if (data.saved === "success") {
           localStorage.setItem("token", data.token);
-          this.props.handleToken(data.token);
+          console.log(data.admin);
+          this.props.handleToken(data.token, data.admin);
           if (data.admin) {
             this.props.history.push("/admin/");
           } else {
@@ -70,8 +73,8 @@ class Login extends Component {
   render() {
     return (
       <div className="main">
-        <h1>Login Form</h1>
         <form id="login_form" onSubmit={this.login_form_submit}>
+          <h1>Login Form</h1>
           <label htmlFor="email">Email ID : </label>
           <input
             id="email"
@@ -95,13 +98,20 @@ class Login extends Component {
             data-sitekey="6LdMetIUAAAAALN5cER-Dg7G1dF64-CFHG1F73zW"
           />
           <div />
-          <div>
-            <input type="submit" value="Login" />
-          </div>
+          <input type="submit" value="Login" />
         </form>
         <h2 id="error" style={{ visibility: "hidden" }}>
           Errors :{" "}
         </h2>
+        <div className="overlay">
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "72vh", left: "58vw" }}
+          ></div>
+          <p style={{ position: "absolute", top: "88vh", left: "55vw" }}>
+            Verifying Credentials...
+          </p>
+        </div>
       </div>
     );
   }

@@ -60,6 +60,8 @@ class Profile extends Component {
 
   updateProfile = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     const token = localStorage.getItem("token");
     const url = "/user/update/";
     let data = {
@@ -76,6 +78,7 @@ class Profile extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.updated === "success") {
+          overlay.style.display = "none";
           const h2 = document.getElementById("update_visible");
           h2.style.visibility = "visible";
           setTimeout(function() {
@@ -87,6 +90,8 @@ class Profile extends Component {
 
   register = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     const url = "/user/register/";
     let data = {
       ...this.state
@@ -110,7 +115,7 @@ class Profile extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="admin">
+        <div className="admin-main">
           <form
             id="register_form"
             onSubmit={
@@ -119,7 +124,7 @@ class Profile extends Component {
             method="post"
           >
             <h1 style={{ gridColumn: "span 2" }}>
-              {localStorage.getItem("token") ? "Profile" : ""}
+              {localStorage.getItem("token") ? "Profile" : "Registration Form"}
             </h1>
 
             <label htmlFor="f_name">First Name : </label>
@@ -226,6 +231,15 @@ class Profile extends Component {
           <h2 id="update_visible" style={{ visibility: "hidden" }}>
             Profile Updated...
           </h2>
+        </div>
+        <div className="overlay">
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p style={{ position: "absolute", top: "60vh", left: "45vw" }}>
+            Please Wait...
+          </p>
         </div>
       </React.Fragment>
     );

@@ -3,6 +3,9 @@ import React, { Component } from "react";
 class Bookmains2 extends Component {
   submitHandler = async () => {
     const data = this.props.state;
+    const conFee = ["1A", "2A", "3A"].indexOf(data.teir) === -1 ? 15 : 35;
+    const gst = (data.cost + conFee) * 0.05;
+    const totalFare = (data.cost + conFee + gst) * 100;
     const receipt = {
       customer: {
         name: data.user.f_name + " " + data.user.l_name,
@@ -10,7 +13,7 @@ class Bookmains2 extends Component {
         contact: data.user.mobile
       },
       type: "link",
-      amount: Number(data.cost),
+      amount: totalFare,
       currency: "INR",
       description: "Payment link for your train booking.",
       sms_notify: 1,
@@ -28,7 +31,6 @@ class Bookmains2 extends Component {
     })
       .then(res => res.json())
       .then(details => {
-        console.log("payment request created");
         this.props.paymentHandler(details.id);
       });
     this.props.stageHandler(this.props.stage + 1);

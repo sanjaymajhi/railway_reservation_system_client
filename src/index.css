@@ -10,7 +10,24 @@ body {
   font-family: sans-serif;
 }
 
-button, #train-search-page #train-main .train-search-results button, #book-main button {
+#form-border, #register_form, #login_form, #ticket-page {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 0 10px lightgray;
+          box-shadow: 0 0 10px lightgray;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+button, #form input[type="submit"], .admin .admin-main form input[type="submit"], #train-search-page #train-main .train-search-results button, #book-main button, #ticket-page button {
   -ms-grid-column-align: center;
       justify-self: center;
   -ms-flex-item-align: center;
@@ -114,15 +131,21 @@ hr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 0;
 }
 
 .navbar .nav2 ul li {
-  margin-right: 20px;
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   vertical-align: baseline;
   color: white;
-  padding: 10px;
+  padding: 20px;
+  margin: 0;
+}
+
+.navbar .nav2 ul li:hover {
+  background-color: #09092c;
+  border-bottom: 1px solid #09092c;
 }
 
 a {
@@ -248,22 +271,25 @@ ul {
 }
 
 #register_form {
-  width: 60%;
+  width: 70%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto auto;
       grid-template-columns: auto auto;
   grid-gap: 10px;
+  padding: 5vh 7vh;
+  margin: 5vh;
 }
 
 #register_form input {
   padding: 10px;
   border: 1px solid #bdbcbc;
   font-weight: bold;
+  width: 90%;
 }
 
 #register_form label {
-  text-align: right;
+  text-align: left;
   padding: 10px;
   padding-right: 20px;
   font-weight: bold;
@@ -274,6 +300,7 @@ ul {
 }
 
 #register_form select {
+  width: 90%;
   padding: 8px;
   background: white;
   border: 1px solid #bdbcbc;
@@ -297,7 +324,8 @@ ul {
   -ms-grid-columns: auto auto;
       grid-template-columns: auto auto;
   grid-gap: 10px;
-  margin: auto 20%;
+  margin: 5vh 20%;
+  padding: 5vh 0;
 }
 
 #login_form label {
@@ -307,17 +335,22 @@ ul {
 #login_form input {
   padding: 10px;
   border: 1px solid gray;
+  width: 80%;
 }
 
 #login_form input[type="submit"] {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   background: #2d67b2;
   color: white;
   font-weight: bold;
 }
 
-#form {
+#login_form h1 {
+  grid-column: span 2;
+}
+
+#form, .admin .admin-main form {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto auto;
@@ -326,14 +359,11 @@ ul {
   margin: auto 20%;
 }
 
-#form label {
+#form label, .admin .admin-main form label {
   text-align: left;
 }
 
-#form input[type="text"],
-#form input[type="number"],
-#form input[type="select"],
-#form input[type="submit"] {
+#form input[type="submit"], .admin .admin-main form input[type="submit"] {
   padding: 10px;
   width: 100%;
 }
@@ -367,32 +397,83 @@ ul {
 }
 
 .admin {
-  position: absolute;
-  top: 140px;
-  left: 20%;
-  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.admin .a_nav {
+  width: 15%;
+  border-right: 1px solid lightgray;
+  overflow: auto;
+  background-color: #2b4b75;
+  color: white;
+}
+
+.admin .a_nav h2 {
+  margin: 0;
+  background-color: #101e30;
+  padding: 20px 10px;
+}
+
+.admin .a_nav div {
+  background-color: #2b4b75;
+  padding: 0 10px;
+}
+
+.admin .a_nav div ul li {
+  color: white;
+  text-align: left;
+  padding: 5px;
+}
+
+.admin .a_nav p {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto;
-      grid-template-columns: auto;
+  -ms-grid-columns: 20% 60% 20%;
+      grid-template-columns: 20% 60% 20%;
+  color: white;
+  text-align: left;
+  padding: 20px 10px;
+  margin: 0;
 }
 
-.a_nav {
-  width: 20%;
-  border-right: 1px solid black;
-  height: 90vh;
-  top: 60px;
-  position: fixed;
-  overflow: auto;
+.admin .a_nav p i {
+  vertical-align: middle;
 }
 
-.a_nav ul li {
+.admin .a_nav p:hover {
+  background-color: black;
+}
+
+.admin .admin-main {
+  width: 85%;
+  padding-left: 5vw;
+}
+
+.admin .admin-main form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+}
+
+.admin .admin-main form div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
   text-align: left;
 }
 
-.a_main {
-  margin-left: 20%;
-  width: 80%;
+.admin .admin-main form input {
+  padding: 10px;
+}
+
+.admin .admin-main form select {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
 }
 
 #train-search-page {
@@ -435,7 +516,7 @@ ul {
   text-align: left;
 }
 
-#train-search-page #train-main .train-search-results button {
+#train-search-page #train-main .train-search-results #form input[type="submit"], #form #train-search-page #train-main .train-search-results input[type="submit"], #train-search-page #train-main .train-search-results .admin .admin-main form input[type="submit"], .admin .admin-main form #train-search-page #train-main .train-search-results input[type="submit"], #train-search-page #train-main .train-search-results button {
   width: 70%;
   height: 30%;
 }
@@ -560,7 +641,7 @@ ul {
   padding-left: 10px;
 }
 
-#book-main #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #book-main button, #book-main button {
+#book-main #form input[type="submit"], #form #book-main input[type="submit"], #book-main .admin .admin-main form input[type="submit"], .admin .admin-main form #book-main input[type="submit"], #book-main #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #book-main button, #book-main button {
   width: 20vw;
   height: 8vh;
   background: -webkit-gradient(linear, left top, right top, from(#4383f3), to(#2d67b2));
@@ -586,7 +667,7 @@ ul {
   margin: 10px;
 }
 
-#passenger button, #passenger #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #passenger button {
+#passenger button, #passenger #form input[type="submit"], #form #passenger input[type="submit"], #passenger .admin .admin-main form input[type="submit"], .admin .admin-main form #passenger input[type="submit"], #passenger #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #passenger button {
   background: -webkit-gradient(linear, left top, right top, from(#51b0fe), to(#0c60f4));
   background: linear-gradient(to right, #51b0fe, #0c60f4);
 }
@@ -711,7 +792,7 @@ ul {
   padding: 10px;
 }
 
-#review button, #review #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #review button {
+#review button, #review #form input[type="submit"], #form #review input[type="submit"], #review .admin .admin-main form input[type="submit"], .admin .admin-main form #review input[type="submit"], #review #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #review button {
   padding: 10px;
   width: 20%;
   margin-top: 10px;
@@ -721,16 +802,20 @@ ul {
 }
 
 #ticket-page {
-  position: absolute;
-  top: 60px;
-  width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto auto;
-      grid-template-columns: auto auto;
+  -ms-grid-columns: 40% 20% 40%;
+      grid-template-columns: 40% 20% 40%;
+  width: 60%;
+  margin: 20px auto;
+}
+
+#ticket-page #form input[type="submit"], #form #ticket-page input[type="submit"], #ticket-page .admin .admin-main form input[type="submit"], .admin .admin-main form #ticket-page input[type="submit"], #ticket-page #train-search-page #train-main .train-search-results button, #train-search-page #train-main .train-search-results #ticket-page button, #ticket-page button {
+  padding: 10px 20px;
 }
 
 #ticket-page div {
+  padding: 2vh 3vw;
   text-align: left;
 }
 
@@ -755,5 +840,50 @@ ul {
   border: 1px solid #2d67b2;
   color: white;
   font-weight: bold;
+}
+
+.circular-loader {
+  border: 16px solid lightgray;
+  border-top: 16px solid #2d67b2;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.3)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+  z-index: 9999;
 }
 /*# sourceMappingURL=index.css.map */

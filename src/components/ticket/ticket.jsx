@@ -47,45 +47,78 @@ class Ticket extends Component {
   };
   render() {
     const data = this.props.location.state.data;
+    let count = 0;
     return (
       <div id="ticket-page">
+        <h1 style={{ gridColumn: "span 3" }}>Ticket Details</h1>
         <div>PNR no. </div>
-        <div>: {data._id}</div>
+        <div>:</div>
+        <div> {data._id}</div>
         <div>Booked by </div>
-        <div>: {data.user.f_name + " " + data.user.l_name}</div>
+        <div>:</div>
+        <div> {data.user.f_name + " " + data.user.l_name}</div>
         <div>Train Name </div>
-        <div>: {data.train_name}</div>
+        <div>:</div>
+        <div> {data.train_name}</div>
         <div>Train No. </div>
-        <div>: {data.train_no}</div>
+        <div>:</div>
+        <div> {data.train_no}</div>
         <div>Teir : </div>
-        <div>: {data.teir}</div>
+        <div>:</div>
+        <div> {data.teir}</div>
         <div>Passenger Count </div>
-        <div>: {data.count}</div>
+        <div>:</div>
+        <div> {data.count}</div>
         <div>Source Station </div>
-        <div>: {data.src_stn.name}</div>
+        <div>:</div>
+        <div> {data.src_stn.name}</div>
         <div>Destination Station </div>
-        <div>: {data.des_stn.name}</div>
+        <div>:</div>
+        <div> {data.des_stn.name}</div>
         <div>Departure Time </div>
-        <div>: {new Date(data.depart_date).toLocaleString()}</div>
+        <div>:</div>
+        <div> {new Date(data.depart_date).toLocaleString()}</div>
         <div>Arrival Time </div>
-        <div>: {new Date(data.arrival_date).toLocaleString()}</div>
+        <div>:</div>
+        <div> {new Date(data.arrival_date).toLocaleString()}</div>
         <div>Ticket Price </div>
-        <div>: {data.cost}</div>
+        <div>:</div>
+        <div> {data.cost}</div>
         <div>Payment Id</div>
-        <div>: {data.paymentId}</div>
-        <div>
-          <div>Passengers</div>
-          {data.passengers.map(passenger => (
-            <div>
-              {passenger.name +
-                ", " +
-                passenger.gender +
-                ", " +
-                passenger.age +
-                ", " +
-                passenger.food}
-            </div>
-          ))}
+        <div>:</div>
+        <div> {data.paymentId}</div>
+        <div style={{ gridColumn: "span 3" }}>
+          <div
+            style={{
+              fontWeight: "bold",
+              borderBottom: "1px solid lightgray",
+              textAlign: "center"
+            }}
+          >
+            Passenger Details
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Sr. No.</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Food</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.passengers.map(passenger => (
+                <tr key={count++}>
+                  <td>{count}</td>
+                  <td>{passenger.name}</td>
+                  <td>{passenger.gender}</td>
+                  <td>{passenger.age}</td>
+                  <td>{passenger.food}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <div></div>
         <button id="cancel" onClick={this.cancelHandler}>

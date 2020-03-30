@@ -55,34 +55,32 @@ class Station extends Component {
 
   render() {
     return (
-      <div className="admin">
-        <div className="a_main">
-          <h1>Station Page</h1>
-          <form id="form" onSubmit={this.submit}>
-            <label htmlFor="name">Name : </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              onChange={this.handleChange}
-            />
-            <label htmlFor="code">Station Code : </label>
-            <input
-              type="text"
-              name="code"
-              id="code"
-              onChange={this.handleChange}
-            />
-            <div />
-            <input type="submit" value="Save" />
-          </form>
-          <h1 id="stat_add" style={{ visibility: "hidden" }}>
-            Station added to database...
-          </h1>
-          <h1 id="error" style={{ visibility: "hidden" }}>
-            Error :{" "}
-          </h1>
-        </div>
+      <div className="admin-main">
+        <h1>Station Page</h1>
+        <form id="form" onSubmit={this.submit}>
+          <label htmlFor="name">Name : </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="code">Station Code : </label>
+          <input
+            type="text"
+            name="code"
+            id="code"
+            onChange={this.handleChange}
+          />
+          <div />
+          <input type="submit" value="Save" />
+        </form>
+        <h1 id="stat_add" style={{ visibility: "hidden" }}>
+          Station added to database...
+        </h1>
+        <h1 id="error" style={{ visibility: "hidden" }}>
+          Error :{" "}
+        </h1>
       </div>
     );
   }

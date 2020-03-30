@@ -69,7 +69,6 @@ class T_Route extends Component {
       route_code: this.state.route_code,
       token: token
     };
-    console.log(payload);
     fetch("/booking/route/create", {
       method: "POST",
       body: JSON.stringify(payload),
@@ -124,37 +123,35 @@ class T_Route extends Component {
 
   render() {
     return (
-      <div className="admin">
-        <div className="a_main">
-          <h1>Route Create : </h1>
-          <form id="form" onSubmit={this.submit}>
-            <label htmlFor="route_code">Route Code : </label>
-            <input
-              type="text"
-              name="route_code"
-              id="route_code"
-              onChange={this.handleChange}
-            />
-            <label htmlFor="distance">Distance : </label>
-            <input
-              type="number"
-              name="distance"
-              id="distance"
-              onChange={this.handleChange}
-            />
-            <label htmlFor="count">No. of stations : </label>
-            <input type="number" name="count" onChange={this.countHandler} />
+      <div className="admin-main">
+        <h1>Route Create : </h1>
+        <form id="form" onSubmit={this.submit}>
+          <label htmlFor="route_code">Route Code : </label>
+          <input
+            type="text"
+            name="route_code"
+            id="route_code"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="distance">Distance : </label>
+          <input
+            type="number"
+            name="distance"
+            id="distance"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="count">No. of stations : </label>
+          <input type="number" name="count" onChange={this.countHandler} />
 
-            <div id="select_div"></div>
-            <input type="submit" value="Save" />
-          </form>
-          <h1 id="route_saved" style={{ visibility: "hidden" }}>
-            Route saved to database...
-          </h1>
-          <h1 id="error" style={{ visibility: "hidden" }}>
-            Errors :{" "}
-          </h1>
-        </div>
+          <div id="select_div"></div>
+          <input type="submit" value="Save" />
+        </form>
+        <h1 id="route_saved" style={{ visibility: "hidden" }}>
+          Route saved to database...
+        </h1>
+        <h1 id="error" style={{ visibility: "hidden" }}>
+          Errors :{" "}
+        </h1>
       </div>
     );
   }

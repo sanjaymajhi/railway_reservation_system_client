@@ -42,6 +42,8 @@ class Searchsidenav extends Component {
 
   submit = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     const url = "/booking/trains/";
     const payload = { ...this.state };
     fetch(url, {
@@ -54,6 +56,7 @@ class Searchsidenav extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.found === "success") {
+          overlay.style.display = "none";
           this.props.history.push({
             pathname: "/search/",
             search: "",
@@ -116,6 +119,22 @@ class Searchsidenav extends Component {
           <p>Departure</p>
           <p>Travel Time</p>
           <p>Arrival</p>
+        </div>
+        <div className="overlay">
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p
+            style={{
+              position: "absolute",
+              top: "60vh",
+              left: "44vw",
+              color: "white"
+            }}
+          >
+            <strong>Finding Trains...</strong>
+          </p>
         </div>
       </React.Fragment>
     );

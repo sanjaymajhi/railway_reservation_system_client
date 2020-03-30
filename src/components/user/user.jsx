@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Route, Switch } from "react-router-dom";
 import Profile from "../user/Profile_register";
+import Unav from "./u_nav";
 
 class User extends Component {
   shouldComponentUpdate() {
@@ -9,7 +10,8 @@ class User extends Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <div className="admin">
+        <Unav />
         <Switch>
           <Route
             path="/user/profile"
@@ -28,7 +30,7 @@ class User extends Component {
 
           <Route path="/user/" />
         </Switch>
-      </React.Fragment>
+      </div>
     );
   }
 }

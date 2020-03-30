@@ -8,6 +8,9 @@ class Bookmains3 extends Component {
 
   fetchPayment = () => {
     const data = this.props.state;
+    const conFee = ["1A", "2A", "3A"].indexOf(data.teir) === -1 ? 15 : 35;
+    const gst = (data.cost + conFee) * 0.05;
+    const totalFare = (data.cost + conFee + gst) * 100;
     const user = data.user;
     const ticket = {
       train_name: data.train_name,
@@ -19,7 +22,7 @@ class Bookmains3 extends Component {
       depart_date: data.depart_date,
       arrival_date: data.arrival_date,
       passengers: data.passengers,
-      cost: data.cost,
+      cost: totalFare,
       user: user._id,
       paymentId: "",
       available_seats: data.availability.seats,
@@ -77,6 +80,10 @@ class Bookmains3 extends Component {
           After you have completed your payment, your seats will be confirmed
           and ticket will be available for download.
         </p>
+        <br />
+        <br />
+        <div className="circular-loader"></div>
+        <p>Waiting for Payment...</p>
       </React.Fragment>
     );
   }

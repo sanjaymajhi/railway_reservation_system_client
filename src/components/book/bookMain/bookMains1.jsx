@@ -82,9 +82,21 @@ class Bookmains1 extends Component {
               {" "}
               1.
             </div>
-            <input type="text" name="name" id="name" placeholder="Full Name" />
-            <input type="number" name="age" id="age" placeholder="Age" />
-            <select name="gender" id="gender">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="number"
+              name="age"
+              id="age"
+              placeholder="Age"
+              required
+            />
+            <select name="gender" id="gender" required>
               <option value="" selected disabled>
                 Gender
               </option>
@@ -92,7 +104,7 @@ class Bookmains1 extends Component {
               <option value="F">Female</option>
               <option value="O">Other</option>
             </select>
-            <select name="food" id="food">
+            <select name="food" id="food" required>
               <option value="" selected disabled>
                 Food Choice
               </option>
