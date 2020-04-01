@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Profile from "../user/Profile_register";
 import Unav from "./u_nav";
+import Bookedtickets from "./booked_tickets";
+import Transactions from "./transactions";
+import Changepass from "./change_password";
 
 class User extends Component {
   shouldComponentUpdate() {
@@ -18,17 +21,12 @@ class User extends Component {
             exact
             render={props => <Profile {...props} admin={false} />}
           />
-          {/* train routes */}
 
-          <Route path="/user/" />
+          <Route path="/user/tickets" component={Bookedtickets} />
 
-          {/* train_route routes */}
+          <Route path="/user/txns" component={Transactions} />
 
-          <Route path="/user/" />
-
-          {/* station routes */}
-
-          <Route path="/user/" />
+          <Route path="/user/cpass" component={Changepass} />
         </Switch>
       </div>
     );

@@ -15,17 +15,17 @@ class Unav extends Component {
             <i className="material-icons">search</i> Search Train{" "}
           </p>
         </Link>
-        <Link to="">
+        <Link to="/user/tickets">
           <p>
             <i className="material-icons">local_activity</i> Your Tickets{" "}
           </p>
         </Link>
-        <Link>
+        <Link to="/user/txns">
           <p>
             <i className="material-icons">update</i>Transactions{" "}
           </p>
         </Link>
-        <Link>
+        <Link to="/user/cpass">
           <p>
             <i className="material-icons">mode_edit</i> Change Pwd{" "}
           </p>

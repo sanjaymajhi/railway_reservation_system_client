@@ -1,32 +1,29 @@
 import React, { Component } from "react";
 import moment from "moment";
+
 class Searchresults extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      class: this.props.class === "all" ? "1A" : this.props.class
+      class: ""
     };
   }
 
   classHandler = async e => {
-    await this.setState({ class: e.target.value });
-    const select = document.getElementById(
-      "availability" + this.props.train._id
-    );
-    select.style.display = "block";
-    const div = document.getElementById(
-      "availability-div" + this.props.train._id
-    );
-    div.lastChild.innerHTML = "";
-    div.style.display = "none";
+    e.preventDefault();
+    if (this.state.class !== "") {
+      let button = document.getElementById(this.state.class);
+      button.style.border = "1px solid lightgray";
+      button.style.color = "#008cff";
+    }
+    e.target.style.border = "1px solid green";
+    e.target.style.color = "green";
+    await this.setState({ class: e.target.id });
   };
-  bookHandler = e => {
-    const overlay = document.querySelector(".overlay");
-    overlay.style.display = "block";
-    var cost = this.props.train.ticket_cost;
 
-    switch (this.state.class) {
+  teirPrice = (cost, teir) => {
+    switch (teir) {
       case "1A":
         cost *= 2.5;
         break;
@@ -42,6 +39,18 @@ class Searchresults extends Component {
       default:
         cost *= 1;
     }
+    return cost;
+  };
+
+  bookHandler = e => {
+    e.preventDefault();
+    const div = document.getElementById(
+      "nearby-date-results" + this.props.train._id
+    );
+    div.style.display = "grid";
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
+
     const depart_h = moment(this.props.train.depart_time).format("HH");
     const depart_m = moment(this.props.train.depart_time).format("mm");
     let depart_date = moment(this.props.date)
@@ -72,23 +81,29 @@ class Searchresults extends Component {
           //cannot use innerhtml as it will remove button
           const innerdiv = document.createElement("div");
           innerdiv.append("Available - " + availabilty.seats);
-          innerdiv.appendChild(document.createElement("br"));
-          innerdiv.append("Rs. " + cost);
           div.appendChild(innerdiv);
           div.style.display = "block";
           div.firstChild.onclick = () => {
-            this.props.history.push({
-              pathname: "../book/",
-              search: "",
-              state: {
-                ...this.props.train,
-                ...this.props.route,
-                date: this.props.date,
-                teir: this.state.class,
-                cost: cost,
-                availability: availabilty
-              }
-            });
+            if (this.state.class !== "") {
+              var cost = this.teirPrice(
+                this.props.train.ticket_cost,
+                this.state.class
+              );
+              this.props.history.push({
+                pathname: "../book/",
+                search: "",
+                state: {
+                  ...this.props.train,
+                  ...this.props.route,
+                  date: this.props.date,
+                  teir: this.state.class,
+                  cost: cost,
+                  availability: availabilty
+                }
+              });
+            } else {
+              alert("select tier for train");
+            }
           };
         } else {
           div.style.color = "red";
@@ -157,7 +172,7 @@ class Searchresults extends Component {
           className="availability"
           onClick={this.bookHandler}
         >
-          NEARBY DATES
+          Check availability and price
         </button>
         <div
           id={"availability-div" + this.props.train._id}
@@ -180,7 +195,18 @@ class Searchresults extends Component {
           <br />
           <br />
         </div>
-        <div id="nearby-date-results"></div>
+        <div
+          id={"nearby-date-results" + this.props.train._id}
+          className="nearby-date-results"
+        >
+          {this.props.train.available_tiers.map(tier => (
+            <button key={tier} id={tier} onClick={this.classHandler}>
+              {tier}
+              <br />
+              {this.teirPrice(train.ticket_cost, tier)}
+            </button>
+          ))}
+        </div>
         <div className="overlay">
           <div
             className="circular-loader"

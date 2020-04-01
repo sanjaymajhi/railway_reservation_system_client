@@ -55,7 +55,7 @@ class Bookmains2 extends Component {
                   {data.src_stn.name} ({data.src_stn.code})
                 </strong>
               </p>
-              <p>Departure : {data.depart_date}</p>
+              <p>Departure : {new Date(data.depart_date).toLocaleString()}</p>
             </div>
             <div>
               <p className="review-station-header">To Station</p>
@@ -64,7 +64,7 @@ class Bookmains2 extends Component {
                   {data.des_stn.name} ({data.des_stn.code})
                 </strong>
               </p>
-              <p>Arrival : {data.arrival_date}</p>
+              <p>Arrival : {new Date(data.arrival_date).toLocaleString()}</p>
             </div>
           </div>
           <p id="review-availability">

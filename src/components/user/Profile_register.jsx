@@ -163,14 +163,7 @@ class Profile extends Component {
               onChange={this.handleChange}
               required
             />
-            <label htmlFor="password">Password : </label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              required
-            />
+
             <label htmlFor="email">Email : </label>
             <input
               id="email"
@@ -222,6 +215,14 @@ class Profile extends Component {
                 Others
               </option>
             </select>
+            <label htmlFor="password">Password : </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              onChange={this.handleChange}
+              required
+            />
             <div></div>
             <input
               type="submit"

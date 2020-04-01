@@ -39,6 +39,7 @@ class Booksidenavs23 extends Component {
             <p>
               <strong>RUPEES {toWords(totalFare).toUpperCase()}</strong>{" "}
             </p>
+            <p>Note: ticket price includes concessions and food price.</p>
           </div>
         </div>
       </React.Fragment>

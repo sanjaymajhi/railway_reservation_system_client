@@ -211,6 +211,7 @@ class Home extends Component {
         </div>
         <div id="footer">
           <p>No Copyrights - www.bookyourjourney.com. No Rights Reserved</p>
+          <p>This is not official website any company.</p>
           <p>Designed and Hosted by Sanjay Majhi</p>
         </div>
         <div className="overlay">

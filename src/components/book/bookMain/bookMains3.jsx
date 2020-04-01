@@ -10,7 +10,7 @@ class Bookmains3 extends Component {
     const data = this.props.state;
     const conFee = ["1A", "2A", "3A"].indexOf(data.teir) === -1 ? 15 : 35;
     const gst = (data.cost + conFee) * 0.05;
-    const totalFare = (data.cost + conFee + gst) * 100;
+    const totalFare = data.cost + conFee + gst;
     const user = data.user;
     const ticket = {
       train_name: data.train_name,
