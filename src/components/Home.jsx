@@ -44,29 +44,36 @@ class Home extends Component {
 
   submit = e => {
     e.preventDefault();
-    const overlay = document.querySelector(".overlay");
-    overlay.style.display = "block";
-    const url = "/booking/trains/";
-    const payload = { ...this.state };
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.found === "success") {
-          this.props.history.push({
-            pathname: "/search/",
-            search: "",
-            state: { ...data, date: this.state.date, class: this.state.class }
-          });
-        } else {
-          alert(data.error.msg);
+    if (localStorage.getItem("token")) {
+      const overlay = document.querySelector(".overlay");
+      overlay.style.display = "block";
+      const url = "/booking/trains/";
+      const payload = { ...this.state };
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
         }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.found === "success") {
+            this.props.history.push({
+              pathname: "/search/",
+              search: "",
+              state: { ...data, date: this.state.date, class: this.state.class }
+            });
+          } else {
+            alert(data.error.msg);
+          }
+        });
+    } else {
+      alert("Please login to book tickets.");
+      this.props.history.push({
+        pathname: "/user/login/"
       });
+    }
   };
   render() {
     return (
@@ -205,9 +212,11 @@ class Home extends Component {
         </div>
         <div id="contact">
           <img src="" alt="" />
-          <a href="cfd">Facebook &emsp; &emsp;</a>
+          <a href="https://github.com/sanjaymajhi">Github &emsp; &emsp;</a>
           <img src="" alt="" />
-          <a href="scs">Twitter</a>
+          <a href="https://www.linkedin.com/in/sanjay-majhi-898938188/">
+            LinkedIn
+          </a>
         </div>
         <div id="footer">
           <p>No Copyrights - www.bookyourjourney.com. No Rights Reserved</p>

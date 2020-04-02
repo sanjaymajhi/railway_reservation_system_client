@@ -22,7 +22,6 @@ class Station extends Component {
     const token = localStorage.getItem("token");
     const payload = { ...this.state, token };
     const url = "/booking/station/create/";
-    console.log(payload);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(payload),

@@ -40,7 +40,6 @@ class Login extends Component {
       .then(data => {
         if (data.saved === "success") {
           localStorage.setItem("token", data.token);
-          console.log(data.admin);
           this.props.handleToken(data.token, data.admin);
           if (data.admin) {
             this.props.history.push("/admin/");
@@ -48,15 +47,23 @@ class Login extends Component {
             this.props.history.push("/user/profile");
           }
         } else {
-          const h2 = document.getElementById("error");
-          h2.style.visibility = "visible";
-          if (!(data.error instanceof Array)) {
-            data.error = new Array(data.error);
+          overlay.style.display = "none";
+          const errors = document.getElementById("errors");
+          errors.style.display = "block";
+          if (data.error) {
+            errors.innerHTML += data.error.msg;
           }
-          data.error.map(error => (h2.innerHTML += error.msg + "\n"));
+          if (data.errors) {
+            let count = 1;
+            data.errors.map(err => {
+              errors.innerHTML += "<p>" + count + ". " + err.msg + "<br/></p>";
+              count++;
+            });
+          }
+          window.location.hash = "errors";
           setTimeout(function() {
-            h2.style.visibility = "hidden";
-          }, 5000);
+            errors.style.display = "none";
+          }, 10000);
         }
       });
   };
@@ -95,20 +102,20 @@ class Login extends Component {
 
           <div
             className="g-recaptcha"
-            data-sitekey="6LdMetIUAAAAALN5cER-Dg7G1dF64-CFHG1F73zW"
+            data-sitekey="6LdD4-UUAAAAAHeM_PXNeDk5X0IBFDrbl2S6sLwu"
           />
           <div />
           <input type="submit" value="Login" />
         </form>
-        <h2 id="error" style={{ visibility: "hidden" }}>
-          Errors :{" "}
-        </h2>
+        <div id="errors" style={{ display: "none" }}>
+          <strong>Errors :</strong>{" "}
+        </div>
         <div className="overlay">
           <div
             className="circular-loader"
-            style={{ position: "absolute", top: "72vh", left: "58vw" }}
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
           ></div>
-          <p style={{ position: "absolute", top: "88vh", left: "55vw" }}>
+          <p style={{ position: "absolute", top: "60vh", left: "43vw" }}>
             Verifying Credentials...
           </p>
         </div>

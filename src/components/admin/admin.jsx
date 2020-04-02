@@ -20,7 +20,7 @@ class Admin extends Component {
           <Route
             path="/admin/"
             exact
-            render={props => <Profile {...props} />}
+            render={props => <Profile {...props} admin={true} />}
           />
           {/* train routes */}
 

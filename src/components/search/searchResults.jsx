@@ -180,14 +180,15 @@ class Searchresults extends Component {
             padding: "20px",
             color: "green",
             fontWeight: "bold",
-            display: "none"
+            display: "none",
+            outline: 0
           }}
         >
           <button
             style={{
               fontWeight: "bold",
               border: "1px solid lightgray",
-              padding: "10px"
+              outline: 0
             }}
           >
             Book Now
@@ -216,8 +217,7 @@ class Searchresults extends Component {
             style={{
               position: "absolute",
               top: "60vh",
-              left: "44vw",
-              color: "white"
+              left: "44vw"
             }}
           >
             <strong>Finding Trains...</strong>

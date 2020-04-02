@@ -20,7 +20,7 @@ class Bookmains2 extends Component {
       email_notify: 1
     };
 
-    await fetch("/invoices/", {
+    await fetch("/extapi/invoices/", {
       method: "POST",
       body: JSON.stringify(receipt),
       headers: {

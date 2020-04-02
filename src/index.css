@@ -3,14 +3,22 @@ body {
   margin: 0;
 }
 
+.App {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-align: center;
   font-family: sans-serif;
+  outline: 0;
 }
 
-#form-border, #register_form, #login_form, #contact-page, #ticket-page {
+#form-border, #register_form, #login_form, #contact-page, .about-page div, .faq-page p, #ticket-page {
   border: 1px solid lightgray;
   padding: 10px;
   border-radius: 20px;
@@ -86,7 +94,6 @@ hr {
   display: grid;
   -ms-grid-columns: auto;
       grid-template-columns: auto;
-  height: 140px;
   background-color: white;
 }
 
@@ -323,6 +330,10 @@ ul {
           box-shadow: 0 0 5px lightgray;
 }
 
+#errors p {
+  text-align: left;
+}
+
 #login_form {
   display: -ms-grid;
   display: grid;
@@ -385,6 +396,36 @@ ul {
 
 #contact-page p {
   text-align: left;
+}
+
+.about-page {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+}
+
+.about-page div {
+  padding: 3vh 3vw;
+  margin: 3vh 3vw;
+}
+
+.about-page div h3 {
+  text-align: left;
+}
+
+.about-page div ul {
+  padding: 0;
+}
+
+.about-page div ul li {
+  text-align: left;
+}
+
+.faq-page p {
+  margin: 2vh 3vh;
+  text-align: left;
+  padding: 2vh 3vw;
 }
 
 #select_div {
@@ -923,5 +964,10 @@ ul {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.3)));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
   z-index: 9999;
+}
+
+.overlay p {
+  color: white;
+  font-weight: bold;
 }
 /*# sourceMappingURL=index.css.map */

@@ -10,7 +10,6 @@ class Navbar extends Component {
   };
   date = new Date();
   render() {
-    console.log(this.props.admin);
     return (
       <div className="navbar">
         <div className="nav1">
@@ -49,7 +48,7 @@ class Navbar extends Component {
                 <li>Profile</li>
               </Link>
               <li>
-                <a href="/" onClick={this.logout}>
+                <a href="/" id="logout" onClick={this.logout}>
                   Log Out
                 </a>
               </li>
@@ -74,9 +73,14 @@ class Navbar extends Component {
             <Link to="/pnr">
               <li>PNR status</li>
             </Link>
+            <Link to="/faq/">
+              <li>FAQ</li>
+            </Link>
 
-            <li>FAQ</li>
-            <li>About</li>
+            <Link to="/about/">
+              <li>About</li>
+            </Link>
+
             <Link to="/contact/">
               <li>Contact</li>
             </Link>

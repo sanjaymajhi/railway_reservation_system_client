@@ -13,6 +13,8 @@ import Book from "./components/book/book";
 import User from "./components/user/user";
 import Ticket from "./components/ticket/ticket";
 import PNR from "./components/ticket/pnr";
+import About from "./components/about";
+import Faq from "./components/faq";
 
 class App extends Component {
   state = {
@@ -56,8 +58,8 @@ class App extends Component {
             <Route path="/pnr/" component={PNR} />
 
             {/* other routes */}
-
-            <Route path="/about" />
+            <Route path="/faq" component={Faq} />
+            <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
           </Switch>
         </div>

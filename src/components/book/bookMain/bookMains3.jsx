@@ -29,7 +29,7 @@ class Bookmains3 extends Component {
       status: data.availability.status
     };
     var fetchPay = setInterval(async () => {
-      await fetch("/invoices/" + data.paymentId, {
+      await fetch("/extapi/invoices/" + data.paymentId, {
         method: "get",
         headers: {
           authorization:

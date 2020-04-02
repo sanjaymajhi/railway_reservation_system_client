@@ -14,7 +14,7 @@ class Ticket extends Component {
   }
 
   ticketStatus = pId => {
-    fetch("/invoices?type=link&payment_id=" + pId, {
+    fetch("/extapi/invoices?type=link&payment_id=" + pId, {
       method: "get",
       headers: {
         authorization:
@@ -22,11 +22,13 @@ class Ticket extends Component {
       }
     })
       .then(res => res.json())
-      .then(async data =>
+      .then(async data => {
         data.items === undefined
           ? await this.setState({ paymentObject: "" })
-          : await this.setState({ paymentObject: data.items[0] })
-      );
+          : await this.setState({ paymentObject: data.items[0] });
+        const overlay = document.querySelector(".overlay");
+        overlay.style.display = "none";
+      });
   };
 
   cancelHandler = () => {
@@ -37,6 +39,8 @@ class Ticket extends Component {
   };
 
   cancelConfirmHandler = async () => {
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     await fetch("/booking/ticket/cancel", {
       method: "POST",
       body: JSON.stringify({ id: this.props.location.state.data._id }),
@@ -48,7 +52,9 @@ class Ticket extends Component {
       .then(data => {
         if (data.cancelled === "success") {
           fetch(
-            "/payments/" + this.props.location.state.data.paymentId + "/refund",
+            "/extapi/payments/" +
+              this.props.location.state.data.paymentId +
+              "/refund",
             {
               method: "POST",
               body: JSON.stringify({}),
@@ -70,12 +76,12 @@ class Ticket extends Component {
                 "<br/>current status of your refund : " +
                 data.status;
               div.appendChild(h2);
+              overlay.style.display = "none";
             });
         }
       });
   };
   render() {
-    console.log(this.state.paymentObject);
     const data = this.props.location.state.data;
     let count = 0;
     return (
@@ -180,6 +186,15 @@ class Ticket extends Component {
             days.
           </p>
           <button onClick={this.cancelConfirmHandler}>Confirm</button>
+        </div>
+        <div className="overlay" style={{ display: "block" }}>
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p style={{ position: "absolute", top: "60vh", left: "43vw" }}>
+            Please Wait...
+          </p>
         </div>
       </div>
     );

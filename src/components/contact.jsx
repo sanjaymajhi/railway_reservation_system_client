@@ -17,13 +17,11 @@ class Contact extends Component {
           <strong>For Cancellation E-tickets :</strong>{" "}
           etickets@BookYourJourney.com
         </p>
-
         <p>
           <strong>Registered Office / Corporate Office :</strong>
         </p>
         <p>Book Your Journey limited,</p>
-        <p>J-83/13, Usmanpur,</p>
-        <p>New Delhi 110053</p>
+        <p>J-83/13, Usmanpur, New Delhi 110053</p>
       </div>
     );
   }

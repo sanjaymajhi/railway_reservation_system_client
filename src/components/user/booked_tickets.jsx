@@ -20,11 +20,15 @@ class Bookedtickets extends Component {
       .then(res => res.json())
       .then(async data => {
         await this.setState({ tickets: data.tickets });
+        const overlay = document.querySelector(".overlay");
+        overlay.style.display = "none";
       });
   };
 
   loadTicketDetails = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     fetch("/booking/ticket/search/", {
       method: "POST",
       body: JSON.stringify({ pnr: e.target.innerHTML }),
@@ -94,6 +98,15 @@ class Bookedtickets extends Component {
             ))}
           </tbody>
         </table>
+        <div className="overlay" style={{ display: "block" }}>
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p style={{ position: "absolute", top: "60vh", left: "43vw" }}>
+            Please Wait...
+          </p>
+        </div>
       </div>
     );
   }

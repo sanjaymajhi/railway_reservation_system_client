@@ -59,7 +59,6 @@ class Book extends Component {
     const depart_time = new Date(data.depart_time);
     const arrival_time = new Date(data.arrival_time);
     const duration = Math.abs(depart_time - arrival_time) / (1000 * 60);
-    console.log(duration);
     let arrival_date = moment(depart_date)
       .add("minute", duration)
       .format("YYYY-MM-DD HH:mm");

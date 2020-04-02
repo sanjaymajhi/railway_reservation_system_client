@@ -18,8 +18,9 @@ class Changepass extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     const payload = { ...this.state, token: localStorage.getItem("token") };
-    console.log(payload);
     fetch("/user/change_pass/", {
       method: "POST",
       body: JSON.stringify(payload),
@@ -49,6 +50,11 @@ class Changepass extends Component {
             errors.style.display = "none";
           }, 5000);
         }
+        overlay.style.display = "none";
+        alert("Plaese Login Again");
+        localStorage.removeItem("token");
+        const a = document.getElementById("logout");
+        a.click();
       });
   };
 
@@ -79,6 +85,15 @@ class Changepass extends Component {
         </h2>
         <div id="errors" style={{ display: "none" }}>
           Errors :
+        </div>
+        <div className="overlay">
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p style={{ position: "absolute", top: "60vh", left: "43vw" }}>
+            Please Wait...
+          </p>
         </div>
       </div>
     );

@@ -43,8 +43,8 @@ class Profile extends Component {
       }
     })
       .then(res => res.json())
-      .then(details => {
-        this.setState({
+      .then(async details => {
+        await this.setState({
           admin: details.admin,
           dob: moment(details.dob).format("YYYY-MM-DD"),
           email: details.email,
@@ -55,6 +55,8 @@ class Profile extends Component {
           trains_booked: details.trains_booked,
           username: details.username
         });
+        const overlay = document.querySelector(".overlay");
+        overlay.style.display = "none";
       });
   }
 
@@ -77,13 +79,32 @@ class Profile extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.updated === "success") {
+        if (data.saved === "success") {
           overlay.style.display = "none";
           const h2 = document.getElementById("update_visible");
           h2.style.visibility = "visible";
+          window.location.hash = "update_visible";
           setTimeout(function() {
             h2.style.visibility = "hidden";
           }, 5000);
+        } else {
+          overlay.style.display = "none";
+          const errors = document.getElementById("errors");
+          errors.style.display = "block";
+          if (data.error) {
+            errors.innerHTML += data.error.msg;
+          }
+          if (data.errors) {
+            let count = 1;
+            data.errors.map(err => {
+              errors.innerHTML += "<p>" + count + ". " + err.msg + "<br/></p>";
+              count++;
+            });
+          }
+          window.location.hash = "errors";
+          setTimeout(function() {
+            errors.style.display = "none";
+          }, 10000);
         }
       });
   };
@@ -105,9 +126,27 @@ class Profile extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.registration === "success") {
+        if (data.saved === "success") {
           alert("Registration Successful...\nProceed to Login.");
           this.props.history.push("/user/login/");
+        } else {
+          overlay.style.display = "none";
+          const errors = document.getElementById("errors");
+          errors.style.display = "block";
+          if (data.error) {
+            errors.innerHTML += data.error.msg;
+          }
+          if (data.errors) {
+            let count = 1;
+            data.errors.map(err => {
+              errors.innerHTML += "<p>" + count + ". " + err.msg + "<br/></p>";
+              count++;
+            });
+          }
+          window.location.hash = "errors";
+          setTimeout(function() {
+            errors.style.display = "none";
+          }, 10000);
         }
       });
   };
@@ -122,6 +161,11 @@ class Profile extends Component {
               localStorage.getItem("token") ? this.updateProfile : this.register
             }
             method="post"
+            style={
+              this.props.admin === undefined
+                ? { margin: "3vh auto", width: "60%" }
+                : {}
+            }
           >
             <h1 style={{ gridColumn: "span 2" }}>
               {localStorage.getItem("token") ? "Profile" : "Registration Form"}
@@ -232,8 +276,19 @@ class Profile extends Component {
           <h2 id="update_visible" style={{ visibility: "hidden" }}>
             Profile Updated...
           </h2>
+          <div id="errors" style={{ display: "none" }}>
+            <strong>Please correct below errors : </strong>
+            <br />{" "}
+          </div>
         </div>
-        <div className="overlay">
+        <div
+          className="overlay"
+          style={
+            this.props.admin === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
           <div
             className="circular-loader"
             style={{ position: "absolute", top: "45vh", left: "45vw" }}

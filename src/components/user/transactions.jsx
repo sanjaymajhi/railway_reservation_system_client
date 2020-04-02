@@ -6,9 +6,6 @@ class Transactions extends Component {
     this.state = {
       txns: []
     };
-  }
-
-  componentDidMount() {
     this.transactionStatus();
   }
 
@@ -21,9 +18,9 @@ class Transactions extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => {
-        data.paymentIds.map(async pId => {
-          await fetch("/payments/" + pId.split("cancelled")[0], {
+      .then(async data => {
+        await data.paymentIds.map(async pId => {
+          await fetch("/extapi/payments/" + pId.split("cancelled")[0], {
             method: "get",
             headers: {
               authorization:
@@ -33,7 +30,7 @@ class Transactions extends Component {
             .then(res => res.json())
             .then(async data => {
               if (data.status === "refunded") {
-                await fetch("/payments/" + data.id + "/refunds", {
+                await fetch("/extapi/payments/" + data.id + "/refunds", {
                   method: "GET",
                   headers: {
                     authorization:
@@ -56,6 +53,8 @@ class Transactions extends Component {
               await this.setState({ txns: txns });
             });
         });
+        const overlay = document.querySelector(".overlay");
+        overlay.style.display = "none";
       });
   };
 
@@ -104,6 +103,15 @@ class Transactions extends Component {
             ))}
           </tbody>
         </table>
+        <div className="overlay" style={{ display: "block" }}>
+          <div
+            className="circular-loader"
+            style={{ position: "absolute", top: "45vh", left: "45vw" }}
+          ></div>
+          <p style={{ position: "absolute", top: "60vh", left: "43vw" }}>
+            Please Wait...
+          </p>
+        </div>
       </div>
     );
   }
