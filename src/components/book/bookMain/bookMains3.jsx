@@ -26,40 +26,40 @@ class Bookmains3 extends Component {
       user: user._id,
       paymentId: "",
       available_seats: data.availability.seats,
-      status: data.availability.status
+      status: data.availability.status,
     };
     var fetchPay = setInterval(async () => {
       await fetch("/extapi/invoices/" + data.paymentId, {
         method: "get",
         headers: {
           authorization:
-            "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz"
-        }
+            "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz",
+        },
       })
-        .then(res => res.json())
-        .then(fetched => {
+        .then((res) => res.json())
+        .then((fetched) => {
           if (fetched.payment_id !== null) {
             ticket.paymentId = fetched.payment_id;
             fetch("/booking/ticket/", {
               method: "POST",
               body: JSON.stringify({ ...ticket }),
               headers: {
-                "content-type": "application/json"
-              }
+                "content-type": "application/json",
+              },
             })
-              .then(res => res.json())
-              .then(data =>
+              .then((res) => res.json())
+              .then((data) =>
                 fetch("/booking/ticket/search/", {
                   method: "post",
                   body: JSON.stringify({ pnr: data.id }),
-                  headers: { "content-type": "application/json" }
+                  headers: { "content-type": "application/json" },
                 })
-                  .then(res => res.json())
-                  .then(data =>
+                  .then((res) => res.json())
+                  .then((data) =>
                     this.props.history.push({
                       pathname: "/ticket/",
                       search: "",
-                      state: { ...data }
+                      state: { ...data },
                     })
                   )
               );
@@ -76,6 +76,10 @@ class Bookmains3 extends Component {
         <br />
         <strong>Please Complete your payment within 5 minutes...</strong>
         <p>Payment link has been sent to your mobile phone and email.</p>
+        <p>
+          Note : For demo payment select netbanking in payment page and then
+          select any bank and proceed, no bank details will be asked
+        </p>
         <p>
           After you have completed your payment, your seats will be confirmed
           and ticket will be available for download.

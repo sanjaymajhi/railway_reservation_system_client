@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 class Bookmains2 extends Component {
-  submitHandler = async () => {
+  submitHandler = async (e) => {
+    const button = document.getElementById("submitHandler");
+    button.disabled = true;
     const data = this.props.state;
     const conFee = ["1A", "2A", "3A"].indexOf(data.teir) === -1 ? 15 : 35;
     const gst = (data.cost + conFee) * 0.05;
@@ -10,14 +12,14 @@ class Bookmains2 extends Component {
       customer: {
         name: data.user.f_name + " " + data.user.l_name,
         email: data.user.email,
-        contact: data.user.mobile
+        contact: data.user.mobile,
       },
       type: "link",
       amount: totalFare,
       currency: "INR",
       description: "Payment link for your train booking.",
       sms_notify: 1,
-      email_notify: 1
+      email_notify: 1,
     };
 
     await fetch("/extapi/invoices/", {
@@ -26,14 +28,15 @@ class Bookmains2 extends Component {
       headers: {
         "content-type": "application/json",
         authorization:
-          "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz"
-      }
+          "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz",
+      },
     })
-      .then(res => res.json())
-      .then(details => {
+      .then((res) => res.json())
+      .then((details) => {
         this.props.paymentHandler(details.id);
       });
     this.props.stageHandler(this.props.stage + 1);
+    button.disabled = false;
   };
 
   render() {
@@ -78,7 +81,7 @@ class Bookmains2 extends Component {
               <div id="review-passenger-header">
                 <strong> Travelling Passengers</strong>
               </div>
-              {data.passengers.map(passenger => (
+              {data.passengers.map((passenger) => (
                 <div className="review-passenger-detail" key={passenger.id}>
                   Name : {passenger.name} | Age : {passenger.age} | Food :{" "}
                   {passenger.food} | Gender : {passenger.gender}
@@ -88,7 +91,9 @@ class Bookmains2 extends Component {
               ))}
             </div>
           </div>
-          <button onClick={this.submitHandler}>Continue</button>
+          <button id="submitHandler" onClick={this.submitHandler}>
+            Continue
+          </button>
         </div>
       </React.Fragment>
     );
