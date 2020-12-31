@@ -8,24 +8,23 @@ class Ticket extends Component {
     super(props);
 
     this.state = {
-      paymentObject: Object
+      paymentObject: Object,
     };
     this.ticketStatus(this.props.location.state.data.paymentId);
   }
 
-  ticketStatus = pId => {
-    fetch("/extapi/invoices?type=link&payment_id=" + pId, {
+  ticketStatus = (pId) => {
+    fetch("/extapi/payments/" + pId.split("cancelled")[0], {
       method: "get",
       headers: {
         authorization:
-          "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz"
-      }
+          "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz",
+      },
     })
-      .then(res => res.json())
-      .then(async data => {
-        data.items === undefined
-          ? await this.setState({ paymentObject: "" })
-          : await this.setState({ paymentObject: data.items[0] });
+      .then((res) => res.json())
+      .then(async (data) => {
+        console.log(data);
+        await this.setState({ paymentObject: data });
         const overlay = document.querySelector(".overlay");
         overlay.style.display = "none";
       });
@@ -45,11 +44,11 @@ class Ticket extends Component {
       method: "POST",
       body: JSON.stringify({ id: this.props.location.state.data._id }),
       headers: {
-        "content-type": "application/json"
-      }
+        "content-type": "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.cancelled === "success") {
           fetch(
             "/extapi/payments/" +
@@ -61,12 +60,12 @@ class Ticket extends Component {
               headers: {
                 "content-type": "application/json",
                 authorization:
-                  "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz"
-              }
+                  "Basic cnpwX3Rlc3Rfa0hiVWVmN1diTVJJQ3M6dUF1UHRRRExBbXN3aEZHb0NDYklCdWZz",
+              },
             }
           )
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
               document.getElementById("cancel-confirm").innerHTML = "";
               const div = document.getElementById("ticket-page");
               const h2 = document.createElement("h2");
@@ -87,7 +86,7 @@ class Ticket extends Component {
     return (
       <div id="ticket-page">
         <h1>Ticket Details</h1>
-        {this.state.paymentObject === "" ? (
+        {this.state.paymentObject.refund_status !== null ? (
           <img src={index} alt="cancelled" />
         ) : new Date(data.arrival_date) < new Date() ? (
           <img src={completed} alt="completed" />
@@ -131,16 +130,16 @@ class Ticket extends Component {
         <div>:</div>
         <div>
           {" "}
-          {this.state.paymentObject === ""
+          {this.state.paymentObject.refund_status === "full"
             ? "Refunded"
-            : this.state.paymentObject.payment_id}
+            : this.state.paymentObject.id}
         </div>
         <div style={{ gridColumn: "span 3" }}>
           <div
             style={{
               fontWeight: "bold",
               borderBottom: "1px solid lightgray",
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             Passenger Details
@@ -156,7 +155,7 @@ class Ticket extends Component {
               </tr>
             </thead>
             <tbody>
-              {data.passengers.map(passenger => (
+              {data.passengers.map((passenger) => (
                 <tr key={count++}>
                   <td>{count}</td>
                   <td>{passenger.name}</td>
@@ -169,7 +168,7 @@ class Ticket extends Component {
           </table>
         </div>
         <div></div>
-        {this.state.paymentObject === "" ? (
+        {this.state.paymentObject.refund_status !== null ? (
           ""
         ) : new Date(data.arrival_date) < new Date() ? (
           ""

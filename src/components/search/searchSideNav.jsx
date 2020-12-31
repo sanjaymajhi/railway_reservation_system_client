@@ -63,6 +63,7 @@ class Searchsidenav extends Component {
             state: { ...data, date: this.state.date, class: this.state.class }
           });
         } else {
+          overlay.style.display = "none";
           alert(data.error.msg);
         }
       });

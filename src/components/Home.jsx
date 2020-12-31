@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import Swal from "sweetalert2";
 
 class Home extends Component {
   constructor(props) {
@@ -8,18 +9,42 @@ class Home extends Component {
       from_stn: "",
       to_stn: "",
       date: "",
-      class: ""
+      class: "",
     };
 
     this.loadStations();
+    Swal.fire({
+      title: "Welcome to BookYourJourney.com",
+      icon: "info",
+      showCloseButton: true,
+      html: `
+      <p>
+        Dear user, as of now we have few number of trains running on different
+        routes on different days of the week.
+      </p>
+      <p>You can try out with these details or choose your own:</p>
+      <ul style="display:grid;grid-template-columns:40% 60%;">
+          <li style="text-align:left;">From</li>
+          <li style="text-align:left;">: New Delhi</li>
+          <li style="text-align:left;">To</li>
+          <li style="text-align:left;">: Howrah</li>
+          <li style="text-align:left;">Class</li>
+          <li style="text-align:left;">: All classes</li>
+          <li style="text-align:left;">Departs on</li>
+          <li style="text-align:left;">: mon, tue, thu, fri, sun</li>
+        </ul>
+      <p><strong>Sorry for inconvenience</strong></p>
+      <p><b>Note :</b> Please register with original mobile or email otherwise demo payment link will not be received.</p>`,
+      showConfirmButton: false,
+    });
   }
 
   loadStations = () => {
     fetch("/booking/stations/", {
-      method: "GET"
+      method: "GET",
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         const select1 = document.getElementById("from_stn");
         const select2 = document.getElementById("to_stn");
         for (let i = 0; i < data.list.length; i++) {
@@ -35,43 +60,49 @@ class Home extends Component {
       });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const target = e.target;
     const name = target.name;
     const value = target.value;
     this.setState({ [name]: value });
   };
 
-  submit = e => {
+  submit = (e) => {
     e.preventDefault();
+    const overlay = document.querySelector(".overlay");
+    overlay.style.display = "block";
     if (localStorage.getItem("token")) {
-      const overlay = document.querySelector(".overlay");
-      overlay.style.display = "block";
       const url = "/booking/trains/";
       const payload = { ...this.state };
       fetch(url, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
+          "Content-type": "application/json; charset=UTF-8",
+        },
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           if (data.found === "success") {
             this.props.history.push({
               pathname: "/search/",
               search: "",
-              state: { ...data, date: this.state.date, class: this.state.class }
+              state: {
+                ...data,
+                date: this.state.date,
+                class: this.state.class,
+              },
             });
           } else {
+            overlay.style.display = "none";
             alert(data.error.msg);
           }
         });
     } else {
+      overlay.style.display = "none";
       alert("Please login to book tickets.");
       this.props.history.push({
-        pathname: "/user/login/"
+        pathname: "/user/login/",
       });
     }
   };
@@ -117,9 +148,7 @@ class Home extends Component {
                 type="date"
                 name="date"
                 min={moment().format("YYYY-MM-DD")}
-                max={moment(Date.now())
-                  .add(90, "d")
-                  .format("YYYY-MM-DD")}
+                max={moment(Date.now()).add(90, "d").format("YYYY-MM-DD")}
                 onChange={this.handleChange}
               />
             </div>
@@ -233,7 +262,7 @@ class Home extends Component {
               position: "absolute",
               top: "60vh",
               left: "44vw",
-              color: "white"
+              color: "white",
             }}
           >
             <strong>Finding Trains...</strong>

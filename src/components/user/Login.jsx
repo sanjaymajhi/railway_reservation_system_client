@@ -6,19 +6,19 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  login_form_submit = e => {
+  login_form_submit = (e) => {
     e.preventDefault();
     const overlay = document.querySelector(".overlay");
     overlay.style.display = "block";
@@ -26,18 +26,18 @@ class Login extends Component {
     const payload = {
       email: this.state.email,
       password: this.state.password,
-      "g-recaptcha-response": e.target[2].value
+      "g-recaptcha-response": e.target[2].value,
     };
 
     fetch(url, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
+        "Content-type": "application/json; charset=UTF-8",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.saved === "success") {
           localStorage.setItem("token", data.token);
           this.props.handleToken(data.token, data.admin);
@@ -55,13 +55,13 @@ class Login extends Component {
           }
           if (data.errors) {
             let count = 1;
-            data.errors.map(err => {
+            data.errors.map((err) => {
               errors.innerHTML += "<p>" + count + ". " + err.msg + "<br/></p>";
               count++;
             });
           }
           window.location.hash = "errors";
-          setTimeout(function() {
+          setTimeout(function () {
             errors.style.display = "none";
           }, 10000);
         }
@@ -102,7 +102,7 @@ class Login extends Component {
 
           <div
             className="g-recaptcha"
-            data-sitekey="6LdD4-UUAAAAAHeM_PXNeDk5X0IBFDrbl2S6sLwu"
+            data-sitekey="6LdMetIUAAAAALN5cER-Dg7G1dF64-CFHG1F73zW"
           />
           <div />
           <input type="submit" value="Login" />
