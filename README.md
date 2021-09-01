@@ -1,4 +1,4 @@
-# railway_reservation_system_client
+# Railway reservation system client repository
 
 It is a railway ticket booking system.
 This repository consists of the Client side code only.
